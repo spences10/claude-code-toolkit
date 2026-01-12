@@ -16,6 +16,8 @@ A curated set of tools for enhanced Claude Code workflows.
 | **mcp-sqlite-tools**  | MCP    | Safe SQLite operations                      |
 | **mcpick**            | CLI    | Toggle MCP servers dynamically              |
 | **svelte-skills-kit** | Plugin | Svelte/SvelteKit development skills         |
+| **research**          | Skill  | Verified source research patterns           |
+| **skill-creator**     | Skill  | Create Claude skills with best practices    |
 
 ## Decision Tree
 
@@ -38,6 +40,14 @@ A curated set of tools for enhanced Claude Code workflows.
 ### "I'm building with Svelte/SvelteKit"
 
 → **svelte-skills-kit** - Runes, routing, data flow patterns
+
+### "I need to research a topic or verify sources"
+
+→ **research skill** - Verified source research, repo cloning patterns
+
+### "I want to create a new Claude skill"
+
+→ **skill-creator skill** - Progressive disclosure, writing guide, CLI reference
 
 ## Typical Workflows
 

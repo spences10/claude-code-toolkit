@@ -57,6 +57,23 @@ Decision tree for choosing the right tool:
 | Usage analytics    | cclog + mcp-sqlite-tools                                            |
 | Svelte development | [svelte-skills-kit](https://github.com/spences10/svelte-skills-kit) |
 
+### research
+
+Verified source research patterns:
+
+- Always fetch and verify actual sources before presenting findings
+- Clone repos via subagent for source-level research
+- Explicit uncertainty when sources can't be verified
+
+### skill-creator
+
+Design and create Claude Skills using progressive disclosure:
+
+- 3-level loading system (metadata → instructions → resources)
+- Writing guide with voice, structure, and description patterns
+- CLI reference for `claude-skills-cli`
+- Official Anthropic best practices
+
 ## Ecosystem
 
 Part of the [@spences10](https://github.com/spences10) Claude Code ecosystem:
