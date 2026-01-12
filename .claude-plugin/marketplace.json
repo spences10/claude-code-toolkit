@@ -1,8 +1,48 @@
 {
   "name": "claude-code-toolkit",
-  "version": "0.0.4",
-  "description": "Performance, productivity, and ecosystem tools for Claude Code by @spences10",
-  "type": "marketplace",
-  "plugins": ["performance", "mcp-essentials", "analytics"],
-  "skills": ["ecosystem-guide"]
+  "owner": {
+    "name": "Scott Spence"
+  },
+  "metadata": {
+    "description": "Performance, productivity, and ecosystem tools for Claude Code",
+    "version": "0.0.4"
+  },
+  "plugins": [
+    {
+      "name": "performance",
+      "source": "./plugins/performance",
+      "description": "SQLite FTS5 indexing for 9x faster file suggestions",
+      "version": "0.0.4",
+      "author": { "name": "Scott Spence" },
+      "category": "performance",
+      "keywords": ["file-suggestion", "sqlite", "fts5", "indexing"]
+    },
+    {
+      "name": "mcp-essentials",
+      "source": "./plugins/mcp-essentials",
+      "description": "Recommended MCP servers: omnisearch, sqlite-tools, mcpick",
+      "version": "0.0.4",
+      "author": { "name": "Scott Spence" },
+      "category": "mcp",
+      "keywords": ["mcp", "omnisearch", "sqlite", "mcpick"]
+    },
+    {
+      "name": "analytics",
+      "source": "./plugins/analytics",
+      "description": "Query Claude Code usage from cclog database",
+      "version": "0.0.4",
+      "author": { "name": "Scott Spence" },
+      "category": "analytics",
+      "keywords": ["analytics", "tokens", "costs", "sessions"]
+    },
+    {
+      "name": "toolkit-skills",
+      "source": "./plugins/toolkit-skills",
+      "description": "Core skills: ecosystem guide, skill creator, and research patterns",
+      "version": "0.0.4",
+      "author": { "name": "Scott Spence" },
+      "category": "skills",
+      "keywords": ["skills", "ecosystem", "research", "skill-creator"]
+    }
+  ]
 }
