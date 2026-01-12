@@ -35,18 +35,34 @@ Project-specific context worth noting:
 | Tool names  | User mentions specific tools   | Toolchain         |
 | Conventions | Naming patterns, structures    | Code style        |
 
-## Query Template
+## Data Source Detection
+
+Check for cclog availability first:
+
+```
+1. Check if mcp-sqlite-tools is available
+2. Try to open ~/.claude/cclog.db
+3. If success → use cclog mode
+4. If fail → use in-context mode
+```
+
+### cclog Query Template
 
 ```sql
-SELECT
-  timestamp,
-  role,
-  content
+SELECT timestamp, role, content
 FROM messages
 WHERE session_id = (SELECT MAX(session_id) FROM sessions)
 ORDER BY timestamp DESC
 LIMIT 100;
 ```
+
+### In-Context Analysis
+
+When cclog unavailable, scan the current conversation context for:
+
+- User messages containing correction patterns
+- Assistant messages that were subsequently corrected
+- Sequences showing: proposal → correction → revision
 
 ## Classification Rules
 
