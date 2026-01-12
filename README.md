@@ -54,3 +54,7 @@ Tested on xo-monorepo (5,491 git-tracked files):
 | **FTS5 (this plugin)** | **3ms** | **BM25** |
 
 Larger codebases see bigger improvements (TikTok reported 8s → 200ms with 100k+ files).
+
+## Documentation
+
+- [File Suggestion Research](docs/file-suggestion-research.md) - Full analysis, benchmarks, and alternative approaches
