@@ -1,0 +1,9 @@
+{
+  "name": "analytics",
+  "version": "0.0.1",
+  "description": "Query Claude Code usage from cclog database - tokens, costs, sessions, thinking blocks",
+  "skills": ["session-analytics"],
+  "postInstall": {
+    "message": "Analytics plugin installed!\n\nRequires cclog: npm i -g cclog\nSync transcripts: cclog sync\n\nThen use /analytics:stats or /analytics:costs"
+  }
+}

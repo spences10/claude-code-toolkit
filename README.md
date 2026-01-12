@@ -1,60 +1,104 @@
 # claude-code-toolkit
 
-Performance and productivity tools for Claude Code.
+Performance, productivity, and ecosystem tools for Claude Code.
 
 ## Quick Start
 
 ```bash
-# 1. Add marketplace (one-time)
+# Add marketplace
 /plugin marketplace add spences10/claude-code-toolkit
 
-# 2. Install plugin
+# Install plugins
 /plugin install performance
+/plugin install mcp-essentials
+/plugin install analytics
 ```
-
-> **Note:** Marketplace = catalog. Plugin = what you install from it.
 
 ## Plugins
 
 ### performance
 
-Optimizes Claude Code file suggestions using SQLite FTS5 indexing.
+Optimizes file suggestions using SQLite FTS5 indexing.
 
 - **9x faster** file search (28ms → 3ms)
 - **Smart ranking** with BM25 algorithm
 - **Auto-indexing** - rebuilds every 5 minutes
 
-| Before                          | After                             |
-| ------------------------------- | --------------------------------- |
-| Alphabetical results            | Relevance-ranked results          |
-| `apps/a.../Button.svelte` first | `packages/ui/button.svelte` first |
+### mcp-essentials
+
+Setup guide for recommended MCP servers:
+
+| Server                                                            | Purpose                                           |
+| ----------------------------------------------------------------- | ------------------------------------------------- |
+| [mcp-omnisearch](https://github.com/spences10/mcp-omnisearch)     | Unified search (Tavily, Kagi, GitHub, Perplexity) |
+| [mcp-sqlite-tools](https://github.com/spences10/mcp-sqlite-tools) | Safe SQLite operations                            |
+| [mcpick](https://github.com/spences10/mcpick)                     | Toggle MCP servers dynamically                    |
+
+### analytics
+
+Query Claude Code usage from [cclog](https://github.com/spences10/cclog) database:
+
+- Token usage by model/project/day
+- Estimated costs
+- Session history
+- Thinking block search
+
+## Skills
+
+### ecosystem-guide
+
+Decision tree for choosing the right tool:
+
+| Need               | Tool                                                                |
+| ------------------ | ------------------------------------------------------------------- |
+| Web/GitHub search  | mcp-omnisearch                                                      |
+| Database queries   | mcp-sqlite-tools                                                    |
+| Reduce MCP context | mcpick                                                              |
+| Usage analytics    | cclog + mcp-sqlite-tools                                            |
+| Svelte development | [svelte-skills-kit](https://github.com/spences10/svelte-skills-kit) |
+
+## Ecosystem
+
+Part of the [@spences10](https://github.com/spences10) Claude Code ecosystem:
+
+| Repo                                                                      | Stars | Description              |
+| ------------------------------------------------------------------------- | ----- | ------------------------ |
+| [mcp-omnisearch](https://github.com/spences10/mcp-omnisearch)             | 260+  | Unified search MCP       |
+| [svelte-claude-skills](https://github.com/spences10/svelte-claude-skills) | 130+  | Svelte/SvelteKit skills  |
+| [claude-skills-cli](https://github.com/spences10/claude-skills-cli)       | 58+   | CLI for creating skills  |
+| [mcpick](https://github.com/spences10/mcpick)                             | 43+   | Dynamic MCP toggling     |
+| [cclog](https://github.com/spences10/cclog)                               | -     | Transcript → SQLite sync |
+| [mcp-sqlite-tools](https://github.com/spences10/mcp-sqlite-tools)         | -     | SQLite operations MCP    |
 
 ## Local Development
 
 ```bash
-# Clone marketplace
 git clone git@github.com:spences10/claude-code-toolkit.git ~/repos/claude-code-toolkit
 
-# 1. Add marketplace
+# Add local marketplace
 /plugin marketplace add ~/repos/claude-code-toolkit
 
-# 2. Install plugin
+# Install plugin
 /plugin install performance
 ```
 
-**Note:** Plugin files are cached at `~/.claude/plugins/cache/`. After editing source files, reinstall or manually sync cache.
+## Releasing Updates
 
-## Benchmarks
+```bash
+# 1. Make your changes
 
-Tested on xo-monorepo (5,491 git-tracked files):
+# 2. Bump version (updates all plugin.json files)
+./scripts/bump-version.sh 0.0.2
 
-| Method                 | Time    | Ranking  |
-| ---------------------- | ------- | -------- |
-| Default (git + grep)   | 28ms    | None     |
-| **FTS5 (this plugin)** | **3ms** | **BM25** |
+# 3. Update CHANGELOG.md
 
-Larger codebases see bigger improvements (TikTok reported 8s → 200ms with 100k+ files).
+# 4. Commit and push
+git add -A && git commit -m "chore: bump to 0.0.2" && git push
+```
+
+Users with auto-update enabled get updates on Claude Code startup.
+Others can run `/plugin update plugin-name@spences10-claude-code-toolkit`.
 
 ## Documentation
 
-- [File Suggestion Research](docs/file-suggestion-research.md) - Full analysis, benchmarks, and alternative approaches
+- [File Suggestion Research](docs/file-suggestion-research.md) - FTS5 analysis and benchmarks

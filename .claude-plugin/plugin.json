@@ -1,7 +1,8 @@
 {
   "name": "claude-code-toolkit",
   "version": "0.0.1",
-  "description": "Performance and productivity tools for Claude Code",
+  "description": "Performance, productivity, and ecosystem tools for Claude Code by @spences10",
   "type": "marketplace",
-  "plugins": ["performance"]
+  "plugins": ["performance", "mcp-essentials", "analytics"],
+  "skills": ["ecosystem-guide"]
 }

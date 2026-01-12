@@ -1,0 +1,80 @@
+---
+name: ecosystem-guide
+description: Guide to spences10's Claude Code ecosystem tools. Use when user asks which tool to use, how tools relate, or needs help choosing between MCP servers, skills, or CLIs.
+---
+
+# Claude Code Ecosystem Guide
+
+A curated set of tools for enhanced Claude Code workflows.
+
+## The Stack
+
+| Tool                  | Type   | Purpose                                     |
+| --------------------- | ------ | ------------------------------------------- |
+| **cclog**             | CLI    | Sync transcripts → SQLite for analytics     |
+| **mcp-omnisearch**    | MCP    | Unified search (Tavily, Kagi, GitHub, etc.) |
+| **mcp-sqlite-tools**  | MCP    | Safe SQLite operations                      |
+| **mcpick**            | CLI    | Toggle MCP servers dynamically              |
+| **svelte-skills-kit** | Plugin | Svelte/SvelteKit development skills         |
+
+## Decision Tree
+
+### "I need to search the web"
+
+→ **mcp-omnisearch** - Web search, GitHub code search, AI answers
+
+### "I need to query a database"
+
+→ **mcp-sqlite-tools** - Read/write SQLite with safety guards
+
+### "I have too many MCPs eating context"
+
+→ **mcpick** - Enable/disable servers per-project
+
+### "I want to track my Claude Code usage"
+
+→ **cclog** - Sync transcripts, query with mcp-sqlite-tools
+
+### "I'm building with Svelte/SvelteKit"
+
+→ **svelte-skills-kit** - Runes, routing, data flow patterns
+
+## Typical Workflows
+
+### Research Mode
+
+```bash
+mcpick enable omnisearch
+# Now Claude has web search, GitHub search, AI answers
+```
+
+### Data Analysis Mode
+
+```bash
+mcpick enable sqlite-tools
+# Query databases, analyze CSVs, manage data
+```
+
+### Minimal Context Mode
+
+```bash
+mcpick disable omnisearch sqlite-tools
+# Just Claude Code core tools
+```
+
+### Analytics Review
+
+```bash
+cclog sync  # Update database
+# Then query ~/.claude/cclog.db with mcp-sqlite-tools
+```
+
+## Links
+
+| Tool              | GitHub                                         |
+| ----------------- | ---------------------------------------------- |
+| cclog             | https://github.com/spences10/cclog             |
+| mcp-omnisearch    | https://github.com/spences10/mcp-omnisearch    |
+| mcp-sqlite-tools  | https://github.com/spences10/mcp-sqlite-tools  |
+| mcpick            | https://github.com/spences10/mcpick            |
+| svelte-skills-kit | https://github.com/spences10/svelte-skills-kit |

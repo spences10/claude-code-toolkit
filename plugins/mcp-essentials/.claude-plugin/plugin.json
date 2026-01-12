@@ -1,0 +1,9 @@
+{
+  "name": "mcp-essentials",
+  "version": "0.0.1",
+  "description": "Recommended MCP servers for enhanced Claude Code workflows: omnisearch, sqlite-tools, and mcpick",
+  "skills": ["mcp-setup"],
+  "postInstall": {
+    "message": "MCP Essentials installed! See the mcp-setup skill for configuration guides.\n\nQuick install:\n  npm i -g mcp-omnisearch mcp-sqlite-tools mcpick\n\nRun /mcp-essentials:setup for interactive configuration."
+  }
+}
