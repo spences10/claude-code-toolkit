@@ -1,6 +1,6 @@
 {
   "name": "analytics",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Query Claude Code usage from cclog database - tokens, costs, sessions, thinking blocks",
   "skills": ["session-analytics"],
   "postInstall": {
