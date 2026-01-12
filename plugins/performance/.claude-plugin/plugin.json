@@ -1,5 +1,5 @@
 {
   "name": "performance",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Optimizes file suggestions with SQLite FTS5 indexing for 9x faster, smarter results"
 }
