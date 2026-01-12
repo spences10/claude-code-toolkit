@@ -74,6 +74,22 @@ Design and create Claude Skills using progressive disclosure:
 - CLI reference for `claude-skills-cli`
 - Official Anthropic best practices
 
+### reflect
+
+Solve "memory zero" - extract learnings from sessions and persist to skills:
+
+- **Manual mode**: `/reflect` analyzes current session, proposes skill updates
+- **Auto mode**: Stop hook suggests reflection on sessions with corrections/discoveries
+- **Smart destination**: Updates marketplace skills in-place, or prompts for location
+
+Patterns detected:
+
+| Type        | Examples                                   |
+| ----------- | ------------------------------------------ |
+| Corrections | "actually use X", "no, do it this way"     |
+| Successes   | "perfect", tests passing, approved changes |
+| Context     | File paths, tool preferences, conventions  |
+
 ## Ecosystem
 
 Part of the [@spences10](https://github.com/spences10) Claude Code ecosystem:

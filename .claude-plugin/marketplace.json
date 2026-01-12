@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Performance, productivity, and ecosystem tools for Claude Code",
-    "version": "0.0.5"
+    "version": "0.0.6"
   },
   "plugins": [
     {
@@ -38,11 +38,18 @@
     {
       "name": "toolkit-skills",
       "source": "./plugins/toolkit-skills",
-      "description": "Core skills: ecosystem guide, skill creator, and research patterns",
-      "version": "0.0.5",
+      "description": "Core skills: ecosystem guide, skill creator, research patterns, and session reflection",
+      "version": "0.0.6",
       "author": { "name": "Scott Spence" },
       "category": "skills",
-      "keywords": ["skills", "ecosystem", "research", "skill-creator"]
+      "keywords": [
+        "skills",
+        "ecosystem",
+        "research",
+        "skill-creator",
+        "reflect",
+        "memory"
+      ]
     }
   ]
 }
