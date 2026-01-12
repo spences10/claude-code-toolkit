@@ -16,7 +16,7 @@ fi
 echo "Bumping to version $VERSION..."
 
 # Update marketplace plugin.json
-sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" .claude-plugin/plugin.json
+sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" .claude-plugin/marketplace.json
 
 # Update each plugin's plugin.json
 for f in plugins/*/.claude-plugin/plugin.json; do
