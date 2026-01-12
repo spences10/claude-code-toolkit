@@ -1,6 +1,6 @@
 {
   "name": "mcp-essentials",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Recommended MCP servers for enhanced Claude Code workflows: omnisearch, sqlite-tools, and mcpick",
   "skills": ["mcp-setup"],
   "postInstall": {
