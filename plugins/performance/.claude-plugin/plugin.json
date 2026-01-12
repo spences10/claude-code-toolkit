@@ -1,0 +1,9 @@
+{
+  "name": "performance",
+  "version": "1.0.0",
+  "description": "Optimizes file suggestions with SQLite FTS5 indexing for 9x faster, smarter results",
+  "skills": ["file-suggestion"],
+  "postInstall": {
+    "message": "Performance plugin installed! Run: chmod +x ~/.claude/plugins/cache/performance/file-suggestion.sh\n\nThen add to ~/.claude/settings.json:\n\n\"fileSuggestion\": {\n  \"type\": \"command\",\n  \"command\": \"~/.claude/plugins/cache/performance/file-suggestion.sh\"\n}"
+  }
+}
