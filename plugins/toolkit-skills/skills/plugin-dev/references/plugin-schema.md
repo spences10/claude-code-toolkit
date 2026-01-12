@@ -22,24 +22,27 @@ Full schema for `.claude-plugin/plugin.json`.
 
 ## Component Configuration
 
-| Field        | Type          | Description                                  |
-| ------------ | ------------- | -------------------------------------------- |
-| `commands`   | string/array  | Custom command paths                         |
-| `agents`     | string/array  | Custom agent paths                           |
-| `hooks`      | string/object | Hooks config or path                         |
-| `mcpServers` | string/object | MCP server configs                           |
-| `lspServers` | string/object | LSP server configs                           |
-| `skills`     | array         | Skill names (auto-discovered from `skills/`) |
+| Field        | Type          | Description             |
+| ------------ | ------------- | ----------------------- |
+| `commands`   | string/array  | Custom command paths    |
+| `agents`     | string/array  | Custom agent paths      |
+| `hooks`      | string/object | Hooks config or path    |
+| `mcpServers` | string/object | MCP server configs      |
+| `lspServers` | string/object | LSP server configs      |
+| `skills`     | array         | Skill paths (see below) |
+| `strict`     | boolean       | Strict validation mode  |
 
-## Post-Install Message
+### Skills Field
+
+If specified, must be an array of **paths** (not names):
 
 ```json
 {
-  "postInstall": {
-    "message": "Plugin installed! Run /my-command to get started."
-  }
+  "skills": ["./skills/my-skill", "./skills/other-skill"]
 }
 ```
+
+**Recommended:** Omit this field and rely on auto-discovery instead.
 
 ## Directory Structure
 
@@ -56,6 +59,18 @@ my-plugin/
 
 ## Example
 
+Minimal plugin.json (recommended):
+
+```json
+{
+  "name": "code-review",
+  "description": "Adds code review commands and agents",
+  "version": "1.0.0"
+}
+```
+
+With optional metadata:
+
 ```json
 {
   "name": "code-review",
@@ -64,10 +79,7 @@ my-plugin/
   "author": {
     "name": "Your Name"
   },
-  "keywords": ["review", "code-quality"],
-  "postInstall": {
-    "message": "Run /review to review code changes."
-  }
+  "keywords": ["review", "code-quality"]
 }
 ```
 
@@ -81,3 +93,18 @@ Claude Code automatically discovers:
 - `hooks/hooks.json` → Hooks
 
 Override with explicit paths in plugin.json if needed.
+
+## Not Supported
+
+These fields are **not currently implemented** (feature requests exist):
+
+| Field           | Status                                                                      |
+| --------------- | --------------------------------------------------------------------------- |
+| `postInstall`   | Requested in [#9394](https://github.com/anthropics/claude-code/issues/9394) |
+| `postUpdate`    | Requested in [#9394](https://github.com/anthropics/claude-code/issues/9394) |
+| `postUninstall` | Requested in [#9394](https://github.com/anthropics/claude-code/issues/9394) |
+
+## Sources
+
+- [Plugins Reference](https://code.claude.com/docs/en/plugins-reference)
+- [Anthropic skills repo](https://github.com/anthropics/skills)
