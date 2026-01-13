@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "Performance, productivity, and ecosystem tools for Claude Code",
-    "version": "0.0.9"
+    "version": "0.0.10"
   },
   "plugins": [
     {
       "name": "performance",
       "source": "./plugins/performance",
       "description": "SQLite FTS5 indexing for 9x faster file suggestions",
-      "version": "0.0.9",
+      "version": "0.0.10",
       "author": { "name": "Scott Spence" },
       "category": "performance",
       "keywords": ["file-suggestion", "sqlite", "fts5", "indexing"]
@@ -21,7 +21,7 @@
       "name": "mcp-essentials",
       "source": "./plugins/mcp-essentials",
       "description": "Recommended MCP servers: omnisearch, sqlite-tools, mcpick",
-      "version": "0.0.9",
+      "version": "0.0.10",
       "author": { "name": "Scott Spence" },
       "category": "mcp",
       "keywords": ["mcp", "omnisearch", "sqlite", "mcpick"]
@@ -30,7 +30,7 @@
       "name": "analytics",
       "source": "./plugins/analytics",
       "description": "Query Claude Code usage from cclog database",
-      "version": "0.0.9",
+      "version": "0.0.10",
       "author": { "name": "Scott Spence" },
       "category": "analytics",
       "keywords": ["analytics", "tokens", "costs", "sessions"]
@@ -39,7 +39,7 @@
       "name": "toolkit-skills",
       "source": "./plugins/toolkit-skills",
       "description": "Core skills: ecosystem guide, skill creator, research patterns, and session reflection",
-      "version": "0.0.9",
+      "version": "0.0.10",
       "author": { "name": "Scott Spence" },
       "category": "skills",
       "keywords": [
