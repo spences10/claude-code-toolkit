@@ -1,12 +1,23 @@
 {
-  "description": "Toolkit-skills plugin hooks. Stop hook suggests /reflect for sessions with learnings.",
+  "description": "Toolkit-skills plugin hooks. UserPromptSubmit forces skill evaluation. Stop hook suggests /reflect for sessions with learnings.",
   "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/skill-activation-forced-eval.sh"
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "Before stopping, check if this session had corrections, discoveries, or validated patterns worth remembering. If significant learnings found, respond with a systemMessage suggesting /reflect. Be selective - only suggest for sessions with clear teachable moments.\n\nRespond with JSON: {\"decision\": \"approve\", \"reason\": \"your analysis\", \"systemMessage\": \"optional suggestion to run /reflect if learnings detected\"}"
+            "model": "sonnet",
+            "prompt": "Evaluate if this session had corrections, discoveries, or validated patterns worth remembering. If significant learnings found that should be persisted, the condition is NOT met - suggest running /reflect. Be selective - only block for sessions with clear teachable moments. Most sessions should pass."
           }
         ]
       }

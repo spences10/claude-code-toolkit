@@ -94,22 +94,34 @@ Plugin source must contain plugin.json
 
 ## Hook Validation Errors
 
-### JSON validation failed (Stop hook)
+### Schema validation failed: ok expected boolean
 
 ```
-Stop hook error: JSON validation failed
+Stop hook error: Schema validation failed: [{"expected": "boolean", "path": ["ok"]}]
 ```
 
-**Cause**: Prompt-based hooks require the LLM to respond with specific JSON format.
+**Cause**: Docs show `{decision, reason}` schema but internal schema is `{ok: boolean, reason?: string}`.
 
-**Fix**: Add explicit JSON instructions to your prompt:
+**Fix**: Use natural language, don't mention JSON. Add `model: sonnet`:
 
 ```json
 {
   "type": "prompt",
-  "prompt": "Your evaluation logic here...\n\nRespond with JSON: {\"decision\": \"approve\" or \"block\", \"reason\": \"your explanation\"}"
+  "model": "sonnet",
+  "prompt": "Evaluate if the task is complete. If more work needed, condition is NOT met."
 }
 ```
+
+**Why this works**: Claude Code wraps your prompt with an internal evaluation prompt that forces the correct schema. Asking for JSON in your prompt conflicts with this.
+
+**Key points**:
+
+- Don't ask for JSON output in your prompt
+- Must use `model: sonnet` (haiku unreliable)
+- Internal schema: `{"ok": true}` or `{"ok": false, "reason": "why"}`
+- `$ARGUMENTS` already prepended - don't need to specify
+
+See [GitHub Issue #11947](https://github.com/anthropics/claude-code/issues/11947) for details.
 
 ### Hook not discovered
 

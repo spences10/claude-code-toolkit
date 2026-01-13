@@ -9,17 +9,22 @@ A curated set of tools for enhanced Claude Code workflows.
 
 ## The Stack
 
-| Tool                  | Type   | Purpose                                     |
-| --------------------- | ------ | ------------------------------------------- |
-| **cclog**             | CLI    | Sync transcripts → SQLite for analytics     |
-| **mcp-omnisearch**    | MCP    | Unified search (Tavily, Kagi, GitHub, etc.) |
-| **mcp-sqlite-tools**  | MCP    | Safe SQLite operations                      |
-| **mcpick**            | CLI    | Toggle MCP servers dynamically              |
-| **svelte-skills-kit** | Plugin | Svelte/SvelteKit development skills         |
-| **research**          | Skill  | Verified source research patterns           |
-| **skill-creator**     | Skill  | Create Claude skills with best practices    |
+| Tool                  | Type   | Purpose                                                      |
+| --------------------- | ------ | ------------------------------------------------------------ |
+| **toolkit-skills**    | Plugin | Forced-eval hook + core skills (pair with any skills plugin) |
+| **svelte-skills-kit** | Plugin | Svelte/SvelteKit skills (pair with toolkit-skills)           |
+| **cclog**             | CLI    | Sync transcripts → SQLite for analytics                      |
+| **mcp-omnisearch**    | MCP    | Unified search (Tavily, Kagi, GitHub, etc.)                  |
+| **mcp-sqlite-tools**  | MCP    | Safe SQLite operations                                       |
+| **mcpick**            | CLI    | Toggle MCP servers dynamically                               |
+| **research**          | Skill  | Verified source research patterns                            |
+| **skill-creator**     | Skill  | Create Claude skills with best practices                     |
 
 ## Decision Tree
+
+### "I want skills to activate reliably"
+
+→ **toolkit-skills** - Forced-eval hook evaluates every prompt against available skills. Install alongside any skills plugin.
 
 ### "I need to search the web"
 
@@ -51,6 +56,18 @@ A curated set of tools for enhanced Claude Code workflows.
 
 ## Typical Workflows
 
+### Recommended Setup (Skills)
+
+```bash
+# Core: forced-eval hook + ecosystem skills
+claude plugin install toolkit-skills@claude-code-toolkit
+
+# Domain skills (optional, based on your stack)
+claude plugin install svelte-skills@svelte-skills-kit
+```
+
+toolkit-skills hook ensures skills from any plugin activate on relevant prompts.
+
 ### Research Mode
 
 ```bash
@@ -81,10 +98,11 @@ cclog sync  # Update database
 
 ## Links
 
-| Tool              | GitHub                                         |
-| ----------------- | ---------------------------------------------- |
-| cclog             | https://github.com/spences10/cclog             |
-| mcp-omnisearch    | https://github.com/spences10/mcp-omnisearch    |
-| mcp-sqlite-tools  | https://github.com/spences10/mcp-sqlite-tools  |
-| mcpick            | https://github.com/spences10/mcpick            |
-| svelte-skills-kit | https://github.com/spences10/svelte-skills-kit |
+| Tool                | GitHub                                           |
+| ------------------- | ------------------------------------------------ |
+| claude-code-toolkit | https://github.com/spences10/claude-code-toolkit |
+| svelte-skills-kit   | https://github.com/spences10/svelte-skills-kit   |
+| cclog               | https://github.com/spences10/cclog               |
+| mcp-omnisearch      | https://github.com/spences10/mcp-omnisearch      |
+| mcp-sqlite-tools    | https://github.com/spences10/mcp-sqlite-tools    |
+| mcpick              | https://github.com/spences10/mcpick              |
