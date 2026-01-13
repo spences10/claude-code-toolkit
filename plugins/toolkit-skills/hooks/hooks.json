@@ -6,7 +6,8 @@
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "Analyze if this session contains learnings worth persisting (corrections, discoveries, validated patterns). If significant learnings found, suggest running /reflect to capture them. Be selective - only suggest reflection for sessions with clear teachable moments."
+            "model": "sonnet",
+            "prompt": "Before stopping, check if this session had corrections, discoveries, or validated patterns worth remembering. If yes, suggest the user run /reflect to capture learnings. Be selective - only mention reflection for sessions with clear teachable moments."
           }
         ]
       }
