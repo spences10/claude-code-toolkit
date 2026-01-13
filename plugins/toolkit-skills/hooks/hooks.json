@@ -6,8 +6,7 @@
         "hooks": [
           {
             "type": "prompt",
-            "model": "sonnet",
-            "prompt": "Before stopping, check if this session had corrections, discoveries, or validated patterns worth remembering. If yes, suggest the user run /reflect to capture learnings. Be selective - only mention reflection for sessions with clear teachable moments."
+            "prompt": "Before stopping, check if this session had corrections, discoveries, or validated patterns worth remembering. If significant learnings found, respond with a systemMessage suggesting /reflect. Be selective - only suggest for sessions with clear teachable moments.\n\nRespond with JSON: {\"decision\": \"approve\", \"reason\": \"your analysis\", \"systemMessage\": \"optional suggestion to run /reflect if learnings detected\"}"
           }
         ]
       }
