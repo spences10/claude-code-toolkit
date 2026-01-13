@@ -1,5 +1,5 @@
 {
   "name": "analytics",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Query Claude Code usage from cclog database - tokens, costs, sessions, thinking blocks"
 }
