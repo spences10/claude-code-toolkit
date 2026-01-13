@@ -92,6 +92,41 @@ Plugin source must contain plugin.json
 1. Create `.claude-plugin/plugin.json` in plugin directory
 2. Set `"strict": false` in marketplace entry
 
+## Hook Validation Errors
+
+### JSON validation failed (Stop hook)
+
+```
+Stop hook error: JSON validation failed
+```
+
+**Cause**: Prompt-based hooks require the LLM to respond with specific JSON format.
+
+**Fix**: Add explicit JSON instructions to your prompt:
+
+```json
+{
+  "type": "prompt",
+  "prompt": "Your evaluation logic here...\n\nRespond with JSON: {\"decision\": \"approve\" or \"block\", \"reason\": \"your explanation\"}"
+}
+```
+
+### Hook not discovered
+
+**Cause**: `hooks.json` placed inside skill directory instead of plugin root.
+
+**Fix**: Move hooks to plugin root:
+
+```
+// Wrong
+my-plugin/skills/my-skill/hooks/hooks.json
+
+// Correct
+my-plugin/hooks/hooks.json
+```
+
+Auto-discovery expects `hooks/hooks.json` at plugin root level.
+
 ## Warnings (Non-blocking)
 
 | Warning                               | Meaning                    |
