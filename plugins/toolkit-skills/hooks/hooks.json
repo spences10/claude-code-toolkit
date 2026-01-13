@@ -1,4 +1,5 @@
 {
+  "description": "Toolkit-skills plugin hooks. Stop hook suggests /reflect for sessions with learnings.",
   "hooks": {
     "Stop": [
       {

@@ -29,7 +29,7 @@ Run `/reflect` after sessions with:
 
 ### Automatic Mode
 
-Enable Stop hook to auto-reflect on session completion (see hooks/).
+Stop hook auto-suggests `/reflect` on session completion when learnings detected.
 
 ## Process
 
