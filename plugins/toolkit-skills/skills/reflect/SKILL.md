@@ -20,16 +20,25 @@ Run `/reflect` after sessions with:
 
 ## Usage
 
-### Manual Mode
-
 ```
 /reflect              # Analyze current session, suggest skill updates
 /reflect skill-name   # Target specific skill for updates
 ```
 
-### Automatic Mode
+**Note:** This is manual-only. Run before ending sessions with learnings.
 
-Stop hook auto-suggests `/reflect` on session completion when learnings detected.
+## Why Manual-Only?
+
+Auto-detection via Stop hooks doesn't work reliably:
+
+| Issue  | Problem                                        |
+| ------ | ---------------------------------------------- |
+| #16227 | Stop hook output is silent (not shown to user) |
+| #10412 | Plugin Stop hooks fail with exit code 2        |
+| #10875 | Plugin JSON output not captured                |
+| #3656  | Blocking functionality partially removed       |
+
+Stop hooks fire but can't communicate back - making them useless for reminders. Other self-improving skill implementations (autoskill, reflect-skill) also use manual triggering for this reason.
 
 ## Process
 
