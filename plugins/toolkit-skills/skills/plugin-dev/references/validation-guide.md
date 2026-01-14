@@ -139,6 +139,21 @@ my-plugin/hooks/hooks.json
 
 Auto-discovery expects `hooks/hooks.json` at plugin root level.
 
+## Hook Reliability by Type
+
+Not all hooks work reliably. Known issues as of Jan 2026:
+
+| Hook             | From Plugins | From settings.json | Notes                           |
+| ---------------- | ------------ | ------------------ | ------------------------------- |
+| UserPromptSubmit | ✓ Works      | ✓ Works            | Most reliable                   |
+| Stop             | ✗ Silent     | ✓ Fires but silent | Can't communicate back (#16227) |
+| PreToolUse       | Inconsistent | Inconsistent       | Multiple open bugs (#6305)      |
+| PostToolUse      | Inconsistent | Inconsistent       | Multiple open bugs (#6403)      |
+| SessionStart     | ✓ Works      | ✓ Works            | Good for context injection      |
+| Notification     | ✓ Works      | ✓ Works            | Good for alerts/TTS             |
+
+**Recommendation**: Use UserPromptSubmit for reliable plugin hooks. Avoid Stop hooks for user-facing features - they fire but output is silent.
+
 ## Warnings (Non-blocking)
 
 | Warning                               | Meaning                    |
