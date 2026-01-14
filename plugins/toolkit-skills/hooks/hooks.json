@@ -1,5 +1,5 @@
 {
-  "description": "Toolkit-skills plugin hooks. UserPromptSubmit forces skill evaluation. Stop hook reminds about /reflect.",
+  "description": "Toolkit-skills plugin hooks. UserPromptSubmit forces skill evaluation.",
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -7,16 +7,6 @@
           {
             "type": "command",
             "command": "${CLAUDE_PLUGIN_ROOT}/hooks/skill-activation-forced-eval.sh"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/stop-reflect-reminder.sh"
           }
         ]
       }
