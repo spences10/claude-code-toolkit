@@ -153,6 +153,98 @@ description: UI component patterns with DaisyUI v5 for cards, forms, buttons, an
 
 ---
 
+## Example 4: Project Context
+
+### Use Case
+
+Ensure Claude follows YOUR project's specific patterns, conventions, and architecture decisions consistently across all conversations.
+
+### Why You Need This
+
+Without a project-context skill, Claude:
+
+- Mixes patterns (uses `writable` when you use `$state`)
+- Creates files in wrong locations
+- Uses wrong libraries (Prisma when you use Drizzle)
+- Ignores your naming conventions
+
+With a project-context skill, Claude automatically follows your rules.
+
+### Structure
+
+```
+project-context/
+├── SKILL.md                    # Stack + critical rules
+└── references/
+    ├── architecture.md         # System design details
+    ├── conventions.md          # Naming, file structure
+    └── patterns.md             # Code patterns with examples
+```
+
+### SKILL.md Example (SvelteKit + Drizzle + Better-auth)
+
+```markdown
+---
+name: project-context
+description: Project patterns for [your-app]. Use before any development work to ensure consistent implementation.
+---
+
+# Project Context
+
+## Stack
+
+- **Framework**: SvelteKit 2 with Svelte 5
+- **Database**: SQLite + Drizzle ORM
+- **Auth**: Better-auth
+- **UI**: Tailwind + shadcn-svelte
+- **Forms**: Superforms + Zod
+
+## Critical Rules
+
+1. **State**: Use `$state`, `$derived`, `$effect` - never `writable`/`$:`
+2. **Routes**: App routes in `src/routes/(app)/` - requires auth
+3. **DB queries**: Always through `src/lib/server/db/queries/` - never import drizzle directly in routes
+4. **Forms**: Superforms with Zod schemas from `src/lib/schemas/`
+5. **Auth**: Use `auth.api` helpers - never modify `src/lib/server/auth.ts` directly
+
+## File Patterns
+
+| Type         | Location                      | Naming               |
+| ------------ | ----------------------------- | -------------------- |
+| Routes       | `src/routes/(app)/[feature]/` | `+page.svelte`       |
+| Components   | `src/lib/components/`         | `PascalCase.svelte`  |
+| Server utils | `src/lib/server/`             | `kebab-case.ts`      |
+| Schemas      | `src/lib/schemas/`            | `[entity].schema.ts` |
+
+## References
+
+- [architecture.md](references/architecture.md) - System design
+- [conventions.md](references/conventions.md) - All naming rules
+- [patterns.md](references/patterns.md) - Code examples
+```
+
+### Why It Works
+
+- **Specific stack** - Names exact versions and libraries
+- **Critical rules first** - Most important patterns immediately visible
+- **Actionable** - "never do X" is clearer than "prefer Y"
+- **File locations** - Claude knows where to create things
+- **Details in references** - Keeps SKILL.md scannable
+
+### Creating Your Own
+
+1. List your stack (framework, db, auth, ui)
+2. Identify top 5 mistakes Claude makes in your project
+3. Write rules that prevent those mistakes
+4. Add file location patterns
+5. Move detailed docs to references/
+
+### Key Insight
+
+A project-context skill is NOT a template you distribute - it's unique to YOUR project. Create one in your repo's `.claude/skills/` or as a local plugin.
+
+---
+
 ## Pattern: Description Keywords
 
 Good descriptions include:
