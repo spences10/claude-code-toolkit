@@ -2,48 +2,49 @@
 name: research
 # prettier-ignore
 description: Research topics by verifying actual source content. Use when asked to research or study links and documentation.
-allowed-tools: WebFetch, mcp__mcp-omnisearch__web_search, mcp__mcp-omnisearch__kagi_summarizer_process, Read, Grep, Bash, Task
+# prettier-ignore
+allowed-tools: WebFetch, Read, Grep, Bash(gh:*), Task, mcp__mcp-omnisearch__web_search, mcp__mcp-omnisearch__tavily_extract_process, mcp__mcp-omnisearch__kagi_summarizer_process, mcp__mcp-omnisearch__ai_search, mcp__mcp-omnisearch__github_search
 ---
 
 # Verified Research
 
-## Quick Start
+## Tool Priority (try in order)
 
-When researching, always fetch and verify actual sources:
-
-```bash
-# Always do this
-WebFetch URL → read content → verify claims → present findings
-
-# Never do this
-WebSearch → present snippets without verification
-```
+1. **GitHub repos** → `gh api` or `gh repo` via Bash
+2. **Doc pages** → `tavily_extract_process` with URL array
+3. **Quick answers** → `ai_search` (perplexity/kagi_fastgpt)
+4. **Discovery** → `web_search` or `github_search`
+5. **Fallback** → Clone repo via subagent
 
 ## Core Rule
 
 **Never present findings without examining actual source content.**
 
-Steps:
+If fetch returns partial/summary → try next tool. Report failures explicitly.
 
-1. Fetch the actual source (WebFetch or extract tools)
-2. Read the complete relevant sections
-3. Verify claims match what source actually says
-4. Quote specific passages when making claims
+## gh CLI for GitHub Repos
 
-## Common Pitfalls
+```bash
+# Get source files directly
+gh api repos/OWNER/REPO/contents/PATH --jq '.content' | base64 -d
 
-- Presenting search snippets as facts
-- Trusting summaries without checking sources
-- Citing sources you haven't read
+# Get repo metadata + version
+gh repo view OWNER/REPO --json description,latestRelease
+```
 
-## When Uncertain
+## When Fetch Returns Partial Data
 
-If you can't verify (paywall, 404, contradictions):
-**Say so explicitly.** Don't present unverified info as fact.
+Partial success ≠ success. If tool returns summary instead of full content:
+
+1. **STOP** - don't proceed with incomplete data
+2. **Try next tool** - use priority list above
+3. **Report** - tell user what succeeded/failed
+4. **Ask** - if all fail, get user decision
+
+**Never substitute sources without user consent.**
 
 ## References
 
-For detailed patterns and examples:
-
 - [references/verification-patterns.md](references/verification-patterns.md)
-- [references/repo-cloning-pattern.md](references/repo-cloning-pattern.md) - Clone repos via subagent for source-level research
+- [references/repo-cloning-pattern.md](references/repo-cloning-pattern.md)
+- [references/partial-data-failures.md](references/partial-data-failures.md)
