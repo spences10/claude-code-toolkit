@@ -90,18 +90,23 @@ Patterns detected:
 | Successes   | "perfect", tests passing, approved changes |
 | Context     | File paths, tool preferences, conventions  |
 
-## Ecosystem
+## Skills Ecosystem
 
-Part of the [@spences10](https://github.com/spences10) Claude Code ecosystem:
+| Project | Purpose |
+|---------|---------|
+| [claude-code-toolkit](https://github.com/spences10/claude-code-toolkit) | Performance, productivity, ecosystem tools |
+| [svelte-skills-kit](https://github.com/spences10/svelte-skills-kit) | Svelte 5 & SvelteKit skills marketplace |
+| [claude-skills-cli](https://github.com/spences10/claude-skills-cli) | CLI for creating skills with validation |
+| [svelte-claude-skills](https://github.com/spences10/svelte-claude-skills) | Original Svelte skills collection |
 
-| Repo                                                                      | Stars | Description              |
-| ------------------------------------------------------------------------- | ----- | ------------------------ |
-| [mcp-omnisearch](https://github.com/spences10/mcp-omnisearch)             | 260+  | Unified search MCP       |
-| [svelte-claude-skills](https://github.com/spences10/svelte-claude-skills) | 130+  | Svelte/SvelteKit skills  |
-| [claude-skills-cli](https://github.com/spences10/claude-skills-cli)       | 58+   | CLI for creating skills  |
-| [mcpick](https://github.com/spences10/mcpick)                             | 43+   | Dynamic MCP toggling     |
-| [cclog](https://github.com/spences10/cclog)                               | -     | Transcript → SQLite sync |
-| [mcp-sqlite-tools](https://github.com/spences10/mcp-sqlite-tools)         | -     | SQLite operations MCP    |
+## Tools Ecosystem
+
+| Project | Purpose |
+|---------|---------|
+| [mcp-omnisearch](https://github.com/spences10/mcp-omnisearch) | Unified search MCP (Tavily, Kagi, GitHub) |
+| [mcp-sqlite-tools](https://github.com/spences10/mcp-sqlite-tools) | Safe SQLite operations MCP |
+| [mcpick](https://github.com/spences10/mcpick) | Dynamic MCP server toggling |
+| [cclog](https://github.com/spences10/cclog) | Claude Code transcript → SQLite |
 
 ## Local Development
 
