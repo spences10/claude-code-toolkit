@@ -1,0 +1,5 @@
+{
+  "name": "dev-environment",
+  "version": "0.0.14",
+  "description": "Development environment setup: git worktrees, terminal optimization"
+}

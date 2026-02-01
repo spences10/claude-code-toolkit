@@ -38,25 +38,38 @@
     {
       "name": "toolkit-skills",
       "source": "./plugins/toolkit-skills",
-      "description": "Core skills: ecosystem guide, skill creator, research patterns, session reflection, and Boris workflow tips",
+      "description": "Core skills: ecosystem guide, skill creator, research patterns, session reflection",
+      "version": "0.0.13",
+      "author": { "name": "Scott Spence" },
+      "category": "skills",
+      "keywords": ["skills", "ecosystem", "research", "skill-creator", "reflect", "memory"]
+    },
+    {
+      "name": "claude-workflow",
+      "source": "./plugins/claude-workflow",
+      "description": "Claude Code workflow patterns: prompting, CLAUDE.md maintenance, plan mode mastery",
       "version": "0.0.14",
       "author": { "name": "Scott Spence" },
       "category": "skills",
-      "keywords": [
-        "skills",
-        "ecosystem",
-        "research",
-        "skill-creator",
-        "reflect",
-        "memory",
-        "worktree",
-        "plan-mode",
-        "prompting",
-        "techdebt",
-        "ci-debug",
-        "terminal",
-        "claude-md"
-      ]
+      "keywords": ["prompting", "claude-md", "plan-mode", "workflow", "productivity"]
+    },
+    {
+      "name": "dev-environment",
+      "source": "./plugins/dev-environment",
+      "description": "Development environment setup: git worktrees, terminal optimization",
+      "version": "0.0.14",
+      "author": { "name": "Scott Spence" },
+      "category": "skills",
+      "keywords": ["worktree", "terminal", "ghostty", "tmux", "parallel"]
+    },
+    {
+      "name": "devops-skills",
+      "source": "./plugins/devops-skills",
+      "description": "DevOps patterns: CI debugging, tech debt detection",
+      "version": "0.0.14",
+      "author": { "name": "Scott Spence" },
+      "category": "skills",
+      "keywords": ["ci", "debug", "docker", "techdebt", "refactoring"]
     }
   ]
 }

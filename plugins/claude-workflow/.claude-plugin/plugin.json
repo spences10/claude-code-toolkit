@@ -1,0 +1,5 @@
+{
+  "name": "claude-workflow",
+  "version": "0.0.14",
+  "description": "Claude Code workflow patterns: prompting, CLAUDE.md maintenance, plan mode mastery"
+}
