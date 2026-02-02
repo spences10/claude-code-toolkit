@@ -52,9 +52,9 @@ Stop hooks fire but can't communicate back - making them useless for reminders. 
 
 Try sources in order, use first available:
 
-### 1. cclog.db (Full History)
+### 1. ccrecall.db (Full History)
 
-If user has [cclog](https://github.com/spences10/cclog) + mcp-sqlite-tools:
+If user has [ccrecall](https://github.com/spences10/ccrecall) + mcp-sqlite-tools:
 
 ```sql
 SELECT timestamp, role, content FROM messages
@@ -64,7 +64,7 @@ ORDER BY timestamp DESC LIMIT 100;
 
 ### 2. In-Context (Current Session)
 
-Fallback when cclog unavailable:
+Fallback when ccrecall unavailable:
 
 - Analyze conversation visible in current context window
 - Limited to ~100k tokens of recent history
@@ -73,7 +73,7 @@ Fallback when cclog unavailable:
 **Note which mode is active:**
 
 ```
-[reflect] Using: cclog.db (full history)
+[reflect] Using: ccrecall.db (full history)
 -- or --
 [reflect] Using: in-context (current session only)
 ```

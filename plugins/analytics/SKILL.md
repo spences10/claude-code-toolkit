@@ -1,23 +1,23 @@
 ---
 name: session-analytics
-description: Query Claude Code session analytics from cclog database. Use when user asks about token usage, costs, session history, or wants to analyze their Claude Code usage patterns.
+description: Query Claude Code session analytics from ccrecall database. Use when user asks about token usage, costs, session history, or wants to analyze their Claude Code usage patterns.
 ---
 
 # Session Analytics
 
-Query your Claude Code usage data from the cclog SQLite database.
+Query your Claude Code usage data from the ccrecall SQLite database.
 
 ## Prerequisites
 
 ```bash
-# Install cclog
-npm i -g cclog
+# Install ccrecall
+npm i -g ccrecall
 
 # Sync transcripts to SQLite
-cclog sync
+ccrecall sync
 ```
 
-Database location: `~/.claude/cclog.db`
+Database location: `~/.claude/ccrecall.db`
 
 ## Quick Queries
 
@@ -86,10 +86,10 @@ LIMIT 10;
 
 If you have mcp-sqlite-tools configured, Claude can query this database directly:
 
-1. Open the database: `open_database ~/.claude/cclog.db`
+1. Open the database: `open_database ~/.claude/ccrecall.db`
 2. Run any query above
 3. Ask Claude to analyze patterns
 
 ## GitHub
 
-https://github.com/spences10/cclog
+https://github.com/spences10/ccrecall

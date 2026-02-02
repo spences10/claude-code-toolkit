@@ -37,16 +37,16 @@ Project-specific context worth noting:
 
 ## Data Source Detection
 
-Check for cclog availability first:
+Check for ccrecall availability first:
 
 ```
 1. Check if mcp-sqlite-tools is available
-2. Try to open ~/.claude/cclog.db
-3. If success → use cclog mode
+2. Try to open ~/.claude/ccrecall.db
+3. If success → use ccrecall mode
 4. If fail → use in-context mode
 ```
 
-### cclog Query Template
+### ccrecall Query Template
 
 ```sql
 SELECT timestamp, role, content
@@ -58,7 +58,7 @@ LIMIT 100;
 
 ### In-Context Analysis
 
-When cclog unavailable, scan the current conversation context for:
+When ccrecall unavailable, scan the current conversation context for:
 
 - User messages containing correction patterns
 - Assistant messages that were subsequently corrected

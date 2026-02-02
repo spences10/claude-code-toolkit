@@ -29,7 +29,7 @@
     {
       "name": "analytics",
       "source": "./plugins/analytics",
-      "description": "Query Claude Code usage from cclog database",
+      "description": "Query Claude Code usage from ccrecall database",
       "version": "0.0.13",
       "author": { "name": "Scott Spence" },
       "category": "analytics",
@@ -42,7 +42,14 @@
       "version": "0.0.13",
       "author": { "name": "Scott Spence" },
       "category": "skills",
-      "keywords": ["skills", "ecosystem", "research", "skill-creator", "reflect", "memory"]
+      "keywords": [
+        "skills",
+        "ecosystem",
+        "research",
+        "skill-creator",
+        "reflect",
+        "memory"
+      ]
     },
     {
       "name": "claude-workflow",
@@ -51,7 +58,13 @@
       "version": "0.0.14",
       "author": { "name": "Scott Spence" },
       "category": "skills",
-      "keywords": ["prompting", "claude-md", "plan-mode", "workflow", "productivity"]
+      "keywords": [
+        "prompting",
+        "claude-md",
+        "plan-mode",
+        "workflow",
+        "productivity"
+      ]
     },
     {
       "name": "dev-environment",
