@@ -10,14 +10,22 @@ Query your Claude Code usage data from the ccrecall SQLite database.
 ## Prerequisites
 
 ```bash
-# Install ccrecall
-npm i -g ccrecall
-
-# Sync transcripts to SQLite
-ccrecall sync
+# Sync transcripts to SQLite (requires bun)
+bun x ccrecall sync
 ```
 
 Database location: `~/.claude/ccrecall.db`
+
+## CLI Commands
+
+```bash
+bun x ccrecall sync      # Import transcripts (incremental)
+bun x ccrecall stats     # Show session/message/token counts
+bun x ccrecall sessions  # List recent sessions
+bun x ccrecall search    # Full-text search across messages
+bun x ccrecall tools     # Show most-used tools
+bun x ccrecall query     # Execute raw SQL
+```
 
 ## Quick Queries
 
@@ -58,17 +66,28 @@ ORDER BY tokens DESC
 LIMIT 10;
 ```
 
-### Estimated costs (approximate)
+### Estimated costs (Opus 4.5)
 
 ```sql
-SELECT model,
-       SUM(input_tokens) / 1000000.0 * 3.0 as input_cost,
-       SUM(output_tokens) / 1000000.0 * 15.0 as output_cost,
-       (SUM(input_tokens) / 1000000.0 * 3.0) +
-       (SUM(output_tokens) / 1000000.0 * 15.0) as total_cost
-FROM messages
-WHERE model LIKE '%opus%'
-GROUP BY model;
+SELECT s.project_path,
+       SUM(m.input_tokens) / 1000000.0 * 15 +
+       SUM(m.output_tokens) / 1000000.0 * 75 +
+       SUM(m.cache_read_tokens) / 1000000.0 * 1.5 +
+       SUM(m.cache_creation_tokens) / 1000000.0 * 18.75 as cost_usd
+FROM sessions s
+JOIN messages m ON m.session_id = s.id
+WHERE m.model LIKE '%opus%'
+GROUP BY s.project_path
+ORDER BY cost_usd DESC;
+```
+
+### Tool usage
+
+```sql
+SELECT tool_name, COUNT(*) as count
+FROM tool_calls
+GROUP BY tool_name
+ORDER BY count DESC;
 ```
 
 ### Search thinking blocks
@@ -84,11 +103,11 @@ LIMIT 10;
 
 ## Using with mcp-sqlite-tools
 
-If you have mcp-sqlite-tools configured, Claude can query this database directly:
+If you have mcp-sqlite-tools configured, Claude can query directly:
 
-1. Open the database: `open_database ~/.claude/ccrecall.db`
-2. Run any query above
-3. Ask Claude to analyze patterns
+1. Open database: `open_database ~/.claude/ccrecall.db`
+2. Tables: `sessions`, `messages`, `tool_calls`, `tool_results`, `teams`, `team_members`, `team_tasks`
+3. Run queries above or ask Claude to analyze patterns
 
 ## GitHub
 

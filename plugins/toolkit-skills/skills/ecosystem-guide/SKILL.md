@@ -92,7 +92,7 @@ mcpick disable omnisearch sqlite-tools
 ### Analytics Review
 
 ```bash
-ccrecall sync  # Update database
+bun x ccrecall sync  # Update database
 # Then query ~/.claude/ccrecall.db with mcp-sqlite-tools
 ```
 
