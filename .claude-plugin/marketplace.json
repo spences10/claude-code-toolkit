@@ -9,15 +9,6 @@
   },
   "plugins": [
     {
-      "name": "performance",
-      "source": "./plugins/performance",
-      "description": "SQLite FTS5 indexing for 9x faster file suggestions",
-      "version": "0.0.13",
-      "author": { "name": "Scott Spence" },
-      "category": "performance",
-      "keywords": ["file-suggestion", "sqlite", "fts5", "indexing"]
-    },
-    {
       "name": "mcp-essentials",
       "source": "./plugins/mcp-essentials",
       "description": "Recommended MCP servers: omnisearch, sqlite-tools, mcpick",

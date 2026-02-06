@@ -1,6 +1,6 @@
 # claude-code-toolkit
 
-Performance, productivity, and ecosystem tools for Claude Code.
+Productivity and ecosystem tools for Claude Code.
 
 ## Quick Start
 
@@ -9,20 +9,11 @@ Performance, productivity, and ecosystem tools for Claude Code.
 /plugin marketplace add spences10/claude-code-toolkit
 
 # Install plugins
-/plugin install performance
 /plugin install mcp-essentials
 /plugin install analytics
 ```
 
 ## Plugins
-
-### performance
-
-Optimizes file suggestions using SQLite FTS5 indexing.
-
-- **9x faster** file search (28ms → 3ms)
-- **Smart ranking** with BM25 algorithm
-- **Auto-indexing** - rebuilds every 5 minutes
 
 ### mcp-essentials
 
@@ -100,7 +91,7 @@ Create, share, and use Claude Code skills with reliable activation.
 
 | Project                                                                   | What it does                                                                  |
 | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [claude-code-toolkit](https://github.com/spences10/claude-code-toolkit)   | Performance plugins, productivity skills, and this ecosystem guide            |
+| [claude-code-toolkit](https://github.com/spences10/claude-code-toolkit)   | Productivity skills, and this ecosystem guide                                 |
 | [svelte-skills-kit](https://github.com/spences10/svelte-skills-kit)       | Production-ready Svelte 5 & SvelteKit skills (90%+ verified accuracy)         |
 | [claude-skills-cli](https://github.com/spences10/claude-skills-cli)       | Create skills with progressive disclosure validation and 84% activation hooks |
 | [svelte-claude-skills](https://github.com/spences10/svelte-claude-skills) | Original Svelte skills collection - now consolidated into svelte-skills-kit   |
@@ -125,7 +116,7 @@ git clone git@github.com:spences10/claude-code-toolkit.git ~/repos/claude-code-t
 /plugin marketplace add ~/repos/claude-code-toolkit
 
 # Install plugin
-/plugin install performance
+/plugin install mcp-essentials
 ```
 
 ## Releasing Updates
@@ -147,4 +138,3 @@ Others can run `/plugin update plugin-name@spences10-claude-code-toolkit`.
 
 ## Documentation
 
-- [File Suggestion Research](docs/file-suggestion-research.md) - FTS5 analysis and benchmarks

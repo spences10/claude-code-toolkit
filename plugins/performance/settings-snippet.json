@@ -1,6 +1,0 @@
-{
-  "fileSuggestion": {
-    "type": "command",
-    "command": "~/.claude/plugins/cache/performance/file-suggestion.sh"
-  }
-}
