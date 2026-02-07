@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "Performance, productivity, and ecosystem tools for Claude Code",
-    "version": "0.0.14"
+    "version": "0.0.15"
   },
   "plugins": [
     {
       "name": "mcp-essentials",
       "source": "./plugins/mcp-essentials",
       "description": "Recommended MCP servers: omnisearch, sqlite-tools, mcpick",
-      "version": "0.0.13",
+      "version": "0.0.15",
       "author": { "name": "Scott Spence" },
       "category": "mcp",
       "keywords": ["mcp", "omnisearch", "sqlite", "mcpick"]
@@ -21,7 +21,7 @@
       "name": "analytics",
       "source": "./plugins/analytics",
       "description": "Query Claude Code usage from ccrecall database",
-      "version": "0.0.13",
+      "version": "0.0.15",
       "author": { "name": "Scott Spence" },
       "category": "analytics",
       "keywords": ["analytics", "tokens", "costs", "sessions"]
@@ -30,7 +30,7 @@
       "name": "toolkit-skills",
       "source": "./plugins/toolkit-skills",
       "description": "Core skills: ecosystem guide, skill creator, research patterns, session reflection",
-      "version": "0.0.13",
+      "version": "0.0.15",
       "author": { "name": "Scott Spence" },
       "category": "skills",
       "keywords": [
@@ -46,7 +46,7 @@
       "name": "claude-workflow",
       "source": "./plugins/claude-workflow",
       "description": "Claude Code workflow patterns: prompting, CLAUDE.md maintenance, plan mode mastery",
-      "version": "0.0.14",
+      "version": "0.0.15",
       "author": { "name": "Scott Spence" },
       "category": "skills",
       "keywords": [
@@ -61,7 +61,7 @@
       "name": "dev-environment",
       "source": "./plugins/dev-environment",
       "description": "Development environment setup: git worktrees, terminal optimization",
-      "version": "0.0.14",
+      "version": "0.0.15",
       "author": { "name": "Scott Spence" },
       "category": "skills",
       "keywords": ["worktree", "terminal", "ghostty", "tmux", "parallel"]
@@ -70,7 +70,7 @@
       "name": "devops-skills",
       "source": "./plugins/devops-skills",
       "description": "DevOps patterns: CI debugging, tech debt detection",
-      "version": "0.0.14",
+      "version": "0.0.15",
       "author": { "name": "Scott Spence" },
       "category": "skills",
       "keywords": ["ci", "debug", "docker", "techdebt", "refactoring"]
