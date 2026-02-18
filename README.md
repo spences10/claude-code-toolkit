@@ -11,6 +11,10 @@ Productivity and ecosystem tools for Claude Code.
 # Install plugins
 /plugin install mcp-essentials
 /plugin install analytics
+/plugin install toolkit-skills
+/plugin install claude-workflow
+/plugin install dev-environment
+/plugin install devops-skills
 ```
 
 ## Plugins
@@ -25,6 +29,8 @@ Setup guide for recommended MCP servers:
 | [mcp-sqlite-tools](https://github.com/spences10/mcp-sqlite-tools) | Safe SQLite operations                            |
 | [mcpick](https://github.com/spences10/mcpick)                     | Toggle MCP servers dynamically                    |
 
+Skills: **mcp-setup** — setup guide for configuring MCP servers
+
 ### analytics
 
 Query Claude Code usage from [ccrecall](https://github.com/spences10/ccrecall) database:
@@ -34,78 +40,58 @@ Query Claude Code usage from [ccrecall](https://github.com/spences10/ccrecall) d
 - Session history
 - Thinking block search
 
-## Skills
+Skills: **session-analytics** — query token usage, costs, and session history
 
-### ecosystem-guide
+### toolkit-skills
 
-Decision tree for choosing the right tool:
+Core skills for the toolkit ecosystem.
 
-| Need               | Tool                                                                |
-| ------------------ | ------------------------------------------------------------------- |
-| Web/GitHub search  | mcp-omnisearch                                                      |
-| Database queries   | mcp-sqlite-tools                                                    |
-| Reduce MCP context | mcpick                                                              |
-| Usage analytics    | ccrecall + mcp-sqlite-tools                                         |
-| Svelte development | [svelte-skills-kit](https://github.com/spences10/svelte-skills-kit) |
+| Skill | Description |
+| ----- | ----------- |
+| **ecosystem-guide** | Guide to choosing the right tool across the ecosystem |
+| **research** | Verify sources before presenting findings |
+| **skill-creator** | Design and create Claude Skills using progressive disclosure |
+| **reflect** | Extract learnings from sessions and persist to skills |
+| **plugin-dev** | Validate, test, and distribute Claude Code plugins |
 
-### research
+### claude-workflow
 
-Verified source research patterns:
+Claude Code workflow patterns.
 
-- Always fetch and verify actual sources before presenting findings
-- Clone repos via subagent for source-level research
-- Explicit uncertainty when sources can't be verified
+| Skill | Description |
+| ----- | ----------- |
+| **advanced-prompting** | High-leverage prompts that challenge Claude's defaults |
+| **claude-md-maintenance** | Maintain CLAUDE.md files effectively |
+| **orchestration** | Multi-agent orchestration patterns for team mode |
+| **plan-review-workflow** | Two-session plan review workflow for complex changes |
 
-### skill-creator
+### dev-environment
 
-Design and create Claude Skills using progressive disclosure:
+Development environment setup.
 
-- 3-level loading system (metadata → instructions → resources)
-- Writing guide with voice, structure, and description patterns
-- CLI reference for `claude-skills-cli`
-- Official Anthropic best practices
+| Skill | Description |
+| ----- | ----------- |
+| **terminal-optimization** | Terminal setup for Claude Code (Ghostty, statusline, tmux) |
+| **worktree-mastery** | Git worktree patterns for parallel Claude sessions |
 
-### reflect
+### devops-skills
 
-Solve "memory zero" - extract learnings from sessions and persist to skills:
+DevOps patterns.
 
-- **Manual mode**: `/reflect` analyzes current session, proposes skill updates
-- **Auto mode**: Stop hook suggests reflection on sessions with corrections/discoveries
-- **Smart destination**: Updates marketplace skills in-place, or prompts for location
-
-Patterns detected:
-
-| Type        | Examples                                   |
-| ----------- | ------------------------------------------ |
-| Corrections | "actually use X", "no, do it this way"     |
-| Successes   | "perfect", tests passing, approved changes |
-| Context     | File paths, tool preferences, conventions  |
+| Skill | Description |
+| ----- | ----------- |
+| **ci-debug-workflow** | Debug failing CI pipelines and reproduce bugs locally |
+| **techdebt-finder** | Find duplicated code, inconsistent patterns, and refactoring opportunities |
 
 ## Ecosystem
 
-Part of a connected suite of tools for Claude Code power users. These projects work together to give Claude Code persistent memory, better search, framework expertise, and self-improving skills.
-
-### Skills & Plugins
-
-Create, share, and use Claude Code skills with reliable activation.
+Related projects for Claude Code power users.
 
 | Project                                                                   | What it does                                                                  |
 | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [claude-code-toolkit](https://github.com/spences10/claude-code-toolkit)   | Productivity skills, and this ecosystem guide                                 |
 | [svelte-skills-kit](https://github.com/spences10/svelte-skills-kit)       | Production-ready Svelte 5 & SvelteKit skills (90%+ verified accuracy)         |
 | [claude-skills-cli](https://github.com/spences10/claude-skills-cli)       | Create skills with progressive disclosure validation and 84% activation hooks |
-| [svelte-claude-skills](https://github.com/spences10/svelte-claude-skills) | Original Svelte skills collection - now consolidated into svelte-skills-kit   |
-
-### MCP Servers & Tools
-
-Extend Claude Code's capabilities with MCP servers for search, databases, and usage tracking.
-
-| Project                                                           | What it does                                                          |
-| ----------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [mcp-omnisearch](https://github.com/spences10/mcp-omnisearch)     | Unified search across Tavily, Brave, Kagi, Perplexity, and GitHub     |
-| [mcp-sqlite-tools](https://github.com/spences10/mcp-sqlite-tools) | Safe SQLite operations with schema inspection and query building      |
-| [mcpick](https://github.com/spences10/mcpick)                     | Toggle MCP servers on/off without restarting - reduce context bloat   |
-| [ccrecall](https://github.com/spences10/ccrecall)                 | Sync Claude Code transcripts to SQLite for usage analytics and search |
+| [ccrecall](https://github.com/spences10/ccrecall)                         | Sync Claude Code transcripts to SQLite for usage analytics and search         |
 
 ## Local Development
 
@@ -135,6 +121,3 @@ git add -A && git commit -m "chore: bump to 0.0.2" && git push
 
 Users with auto-update enabled get updates on Claude Code startup.
 Others can run `/plugin update plugin-name@spences10-claude-code-toolkit`.
-
-## Documentation
-
