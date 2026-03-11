@@ -36,11 +36,10 @@ Skills: **mcp-setup** — setup guide for configuring MCP servers
 Query Claude Code usage from [ccrecall](https://github.com/spences10/ccrecall) database:
 
 - Token usage by model/project/day
-- Estimated costs
 - Session history
 - Thinking block search
 
-Skills: **session-analytics** — query token usage, costs, and session history
+Skills: **analytics** — query token usage and session history
 
 ### toolkit-skills
 
@@ -63,7 +62,6 @@ Claude Code workflow patterns.
 | **advanced-prompting** | High-leverage prompts that challenge Claude's defaults |
 | **claude-md-maintenance** | Maintain CLAUDE.md files effectively |
 | **orchestration** | Multi-agent orchestration patterns for team mode |
-| **plan-review-workflow** | Two-session plan review workflow for complex changes |
 
 ### dev-environment
 
