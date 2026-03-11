@@ -19,17 +19,18 @@ WebFetch and other tools sometimes return _something_ but not _everything_:
 
 ## Tool Effectiveness (tested)
 
-| Tool                       | Full Content | Notes                           |
-| -------------------------- | ------------ | ------------------------------- |
-| `gh api` (Bash)            | ✅ Best      | Actual source code              |
-| `tavily_extract_process`   | ✅ Good      | Use URL array for multiple docs |
-| `ai_search` (perplexity)   | ✅ Good      | Synthesised with citations      |
-| `ai_search` (kagi_fastgpt) | ✅ Good      | Quick answers                   |
-| `github_search`            | ✅ Good      | Find files in repos             |
-| `WebFetch`                 | ⚠️ Partial   | Often returns summary only      |
-| `kagi_summarizer_process`  | ⚠️ Partial   | Summary by design               |
-| `web_search` (any)         | ⚠️ Snippets  | Discovery only, not content     |
-| `kagi_enrichment_enhance`  | ❌ Poor      | Irrelevant for specific queries |
+| Tool                       | Full Content | Notes                                          |
+| -------------------------- | ------------ | ---------------------------------------------- |
+| `gh api` (Bash)            | ✅ Best      | Actual source code                             |
+| `tavily_extract_process`   | ✅ Good      | Use URL array for multiple docs                |
+| `ai_search` (perplexity)   | ✅ Good      | Synthesised with citations                     |
+| `ai_search` (kagi_fastgpt) | ✅ Good      | Quick answers                                  |
+| `github_search`            | ✅ Good      | Find files in repos                            |
+| `npmx.dev` API (WebFetch)  | ✅ Good      | Type docs from .d.ts, "missing" for JSDoc pkgs |
+| `WebFetch`                 | ⚠️ Partial   | Often returns summary only                     |
+| `kagi_summarizer_process`  | ⚠️ Partial   | Summary by design                              |
+| `web_search` (any)         | ⚠️ Snippets  | Discovery only, not content                    |
+| `kagi_enrichment_enhance`  | ❌ Poor      | Irrelevant for specific queries                |
 
 ## Correct Response Pattern
 
