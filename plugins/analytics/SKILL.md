@@ -1,6 +1,7 @@
 ---
-name: session-analytics
-description: Query Claude Code session analytics from ccrecall database. Use when user asks about token usage, costs, session history, or wants to analyze their Claude Code usage patterns.
+name: analytics
+# prettier-ignore
+description: Query Claude Code session analytics from ccrecall database. Use when user asks about token usage, session history, or wants to analyze their Claude Code usage patterns.
 ---
 
 # Session Analytics
@@ -64,21 +65,6 @@ JOIN messages m ON m.session_id = s.id
 GROUP BY s.project_path
 ORDER BY tokens DESC
 LIMIT 10;
-```
-
-### Estimated costs (Opus 4.5)
-
-```sql
-SELECT s.project_path,
-       SUM(m.input_tokens) / 1000000.0 * 15 +
-       SUM(m.output_tokens) / 1000000.0 * 75 +
-       SUM(m.cache_read_tokens) / 1000000.0 * 1.5 +
-       SUM(m.cache_creation_tokens) / 1000000.0 * 18.75 as cost_usd
-FROM sessions s
-JOIN messages m ON m.session_id = s.id
-WHERE m.model LIKE '%opus%'
-GROUP BY s.project_path
-ORDER BY cost_usd DESC;
 ```
 
 ### Tool usage

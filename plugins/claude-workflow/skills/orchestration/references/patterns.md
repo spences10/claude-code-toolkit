@@ -2,8 +2,6 @@
 
 Detailed examples for each coordination pattern.
 
-> Patterns inspired by [claude-sneakpeek](https://github.com/mikekelly/claude-sneakpeek) by Mike Kelly. Thanks to Mike for the original orchestration concepts.
-
 ## Fan-Out
 
 Spawn N independent agents for parallel work. No communication between them.
@@ -145,6 +143,7 @@ TaskCreate("Update documentation", blockedBy: [3])        # Task 5 (parallel wit
 ```
 
 Walk the graph:
+
 1. Spawn agents for all unblocked tasks
 2. When a task completes, check for newly unblocked tasks
 3. Spawn agents for those

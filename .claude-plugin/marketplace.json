@@ -11,7 +11,7 @@
     {
       "name": "mcp-essentials",
       "source": "./plugins/mcp-essentials",
-      "description": "Recommended MCP servers: omnisearch, sqlite-tools, mcpick",
+      "description": "Recommended MCP tools: omnisearch, sqlite-tools, mcpick",
       "version": "0.0.16",
       "author": { "name": "Scott Spence" },
       "category": "mcp",
@@ -24,12 +24,12 @@
       "version": "0.0.16",
       "author": { "name": "Scott Spence" },
       "category": "analytics",
-      "keywords": ["analytics", "tokens", "costs", "sessions"]
+      "keywords": ["analytics", "tokens", "sessions"]
     },
     {
       "name": "toolkit-skills",
       "source": "./plugins/toolkit-skills",
-      "description": "Core skills: ecosystem guide, skill creator, research patterns, session reflection",
+      "description": "Core skills: ecosystem guide, skill creator, research patterns, session reflection, plugin development. Includes UserPromptSubmit hook for forced skill evaluation.",
       "version": "0.0.16",
       "author": { "name": "Scott Spence" },
       "category": "skills",
@@ -39,20 +39,20 @@
         "research",
         "skill-creator",
         "reflect",
-        "memory"
+        "memory",
+        "plugin-dev"
       ]
     },
     {
       "name": "claude-workflow",
       "source": "./plugins/claude-workflow",
-      "description": "Claude Code workflow patterns: prompting, CLAUDE.md maintenance, plan mode mastery, multi-agent orchestration",
+      "description": "Claude Code workflow patterns: prompting, CLAUDE.md maintenance, multi-agent orchestration",
       "version": "0.0.16",
       "author": { "name": "Scott Spence" },
       "category": "skills",
       "keywords": [
         "prompting",
         "claude-md",
-        "plan-mode",
         "workflow",
         "productivity",
         "orchestration",
