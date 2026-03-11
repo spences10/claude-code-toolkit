@@ -2,7 +2,6 @@
 name: techdebt-finder
 # prettier-ignore
 description: Find technical debt patterns in codebases. Use when asked to find duplicated code, inconsistent patterns, or refactoring opportunities.
-allowed-tools: [Read, Grep, Glob, Bash]
 ---
 
 # Tech Debt Finder

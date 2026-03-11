@@ -2,8 +2,6 @@
 name: research
 # prettier-ignore
 description: Verify sources before presenting findings. Use when asked to research links or documentation.
-# prettier-ignore
-allowed-tools: WebFetch, Read, Grep, Bash(gh:*), Task, mcp__mcp-omnisearch__web_search, mcp__mcp-omnisearch__tavily_extract_process, mcp__mcp-omnisearch__kagi_summarizer_process, mcp__mcp-omnisearch__ai_search, mcp__mcp-omnisearch__github_search
 ---
 
 # Verified Research

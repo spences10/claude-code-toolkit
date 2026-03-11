@@ -2,8 +2,6 @@
 name: reflect
 # prettier-ignore
 description: Analyze session history for learnings and persist to skills. Solves "memory zero" - correct once, never again.
-# sqlite tools optional - falls back to in-context analysis
-allowed-tools: [Read, Write, Edit, Grep, Glob]
 ---
 
 # Reflect

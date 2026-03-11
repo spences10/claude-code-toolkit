@@ -2,7 +2,6 @@
 name: advanced-prompting
 # prettier-ignore
 description: High-leverage prompts that challenge Claude's defaults. Use for "grill me", "prove it works", "scrap this", "what would 10x engineer do", "find ways this fails".
-allowed-tools: Read, Grep, Glob, Edit, Write, Bash
 ---
 
 # Advanced Prompting Patterns
