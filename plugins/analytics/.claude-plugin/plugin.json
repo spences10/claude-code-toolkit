@@ -1,5 +1,4 @@
 {
   "name": "analytics",
-  "version": "0.0.16",
   "description": "Query Claude Code usage from ccrecall database - tokens, sessions, thinking blocks"
 }

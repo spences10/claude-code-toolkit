@@ -1,36 +1,41 @@
 {
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "claude-code-toolkit",
+  "description": "Productivity and ecosystem tools for Claude Code",
   "owner": {
     "name": "Scott Spence"
   },
   "metadata": {
-    "description": "Productivity and ecosystem tools for Claude Code",
-    "version": "0.0.16"
+    "version": "0.0.17"
   },
   "plugins": [
     {
       "name": "mcp-essentials",
       "source": "./plugins/mcp-essentials",
       "description": "Recommended MCP tools: omnisearch, sqlite-tools, mcpick",
-      "version": "0.0.16",
+      "version": "0.0.17",
       "author": { "name": "Scott Spence" },
       "category": "mcp",
-      "keywords": ["mcp", "omnisearch", "sqlite", "mcpick"]
+      "keywords": ["mcp", "omnisearch", "sqlite", "mcpick"],
+      "repository": "https://github.com/spences10/claude-code-toolkit",
+      "license": "MIT"
     },
     {
       "name": "analytics",
       "source": "./plugins/analytics",
       "description": "Query Claude Code usage from ccrecall database",
-      "version": "0.0.16",
+      "version": "0.0.17",
       "author": { "name": "Scott Spence" },
       "category": "analytics",
-      "keywords": ["analytics", "tokens", "sessions"]
+      "keywords": ["analytics", "tokens", "sessions"],
+      "repository": "https://github.com/spences10/claude-code-toolkit",
+      "license": "MIT"
     },
     {
       "name": "toolkit-skills",
       "source": "./plugins/toolkit-skills",
       "description": "Core skills: ecosystem guide, skill creator, research patterns, session reflection, plugin development. Includes UserPromptSubmit hook for forced skill evaluation.",
-      "version": "0.0.16",
+      "version": "0.0.17",
       "author": { "name": "Scott Spence" },
       "category": "skills",
       "keywords": [
@@ -41,13 +46,15 @@
         "reflect",
         "memory",
         "plugin-dev"
-      ]
+      ],
+      "repository": "https://github.com/spences10/claude-code-toolkit",
+      "license": "MIT"
     },
     {
       "name": "claude-workflow",
       "source": "./plugins/claude-workflow",
       "description": "Claude Code workflow patterns: prompting, CLAUDE.md maintenance, multi-agent orchestration",
-      "version": "0.0.16",
+      "version": "0.0.17",
       "author": { "name": "Scott Spence" },
       "category": "skills",
       "keywords": [
@@ -58,34 +65,42 @@
         "orchestration",
         "team-mode",
         "multi-agent"
-      ]
+      ],
+      "repository": "https://github.com/spences10/claude-code-toolkit",
+      "license": "MIT"
     },
     {
       "name": "dev-environment",
       "source": "./plugins/dev-environment",
       "description": "Development environment setup: git worktrees, terminal optimization",
-      "version": "0.0.16",
+      "version": "0.0.17",
       "author": { "name": "Scott Spence" },
       "category": "skills",
-      "keywords": ["worktree", "terminal", "ghostty", "tmux", "parallel"]
+      "keywords": ["worktree", "terminal", "ghostty", "tmux", "parallel"],
+      "repository": "https://github.com/spences10/claude-code-toolkit",
+      "license": "MIT"
     },
     {
       "name": "devops-skills",
       "source": "./plugins/devops-skills",
       "description": "DevOps patterns: CI debugging, tech debt detection",
-      "version": "0.0.16",
+      "version": "0.0.17",
       "author": { "name": "Scott Spence" },
       "category": "skills",
-      "keywords": ["ci", "debug", "docker", "techdebt", "refactoring"]
+      "keywords": ["ci", "debug", "docker", "techdebt", "refactoring"],
+      "repository": "https://github.com/spences10/claude-code-toolkit",
+      "license": "MIT"
     },
     {
       "name": "dev-practices",
       "source": "./plugins/dev-practices",
       "description": "Development practices: TDD workflow with red-green-refactor",
-      "version": "0.0.16",
+      "version": "0.0.17",
       "author": { "name": "Scott Spence" },
       "category": "skills",
-      "keywords": ["tdd", "testing", "red-green-refactor", "test-driven"]
+      "keywords": ["tdd", "testing", "red-green-refactor", "test-driven"],
+      "repository": "https://github.com/spences10/claude-code-toolkit",
+      "license": "MIT"
     }
   ]
 }

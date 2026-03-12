@@ -1,7 +1,7 @@
 #!/bin/bash
-# Bump patch version across all plugin.json files
+# Bump version in marketplace.json (single source of truth for versions)
 # Usage: ./scripts/bump-version.sh [version]
-# Example: ./scripts/bump-version.sh 0.0.2
+# Example: ./scripts/bump-version.sh 0.0.17
 
 set -e
 
@@ -9,22 +9,15 @@ VERSION=${1:-}
 
 if [ -z "$VERSION" ]; then
   echo "Usage: $0 <version>"
-  echo "Example: $0 0.0.2"
+  echo "Example: $0 0.0.17"
   exit 1
 fi
 
 echo "Bumping to version $VERSION..."
 
-# Update marketplace plugin.json
+# Update marketplace.json (single source of truth for all plugin versions)
 sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" .claude-plugin/marketplace.json
-
-# Update each plugin's plugin.json
-for f in plugins/*/.claude-plugin/plugin.json; do
-  if [ -f "$f" ]; then
-    sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" "$f"
-    echo "  Updated: $f"
-  fi
-done
+echo "  Updated: .claude-plugin/marketplace.json"
 
 echo ""
 echo "Updated to $VERSION. Don't forget to:"

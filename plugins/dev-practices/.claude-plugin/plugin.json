@@ -1,5 +1,4 @@
 {
   "name": "dev-practices",
-  "version": "0.0.16",
   "description": "Development practices: TDD workflow with red-green-refactor"
 }
