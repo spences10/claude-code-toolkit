@@ -5,6 +5,7 @@
     "name": "Scott Spence"
   },
   "metadata": {
+    "description": "Productivity and ecosystem tools for Claude Code",
     "version": "0.0.17"
   },
   "plugins": [
