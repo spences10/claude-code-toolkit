@@ -44,3 +44,7 @@ my-skill/
 - [skill-examples.md](references/skill-examples.md) - Patterns and examples
 - [cli-reference.md](references/cli-reference.md) - CLI tool usage
 - [anthropic-resources.md](references/anthropic-resources.md) - Official best practices
+- [mcp-integration.md](references/mcp-integration.md) - MCP server integration patterns
+- [testing-guide.md](references/testing-guide.md) - Testing methodology and checklists
+- [distribution.md](references/distribution.md) - Sharing and distributing skills
+- [troubleshooting.md](references/troubleshooting.md) - Common issues and fixes

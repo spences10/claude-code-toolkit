@@ -393,6 +393,58 @@ description: Helps with frontend stuff
 
 ---
 
+## Example 5: MCP-Aware Skill
+
+### Use Case
+
+Skill that guides Claude on using MCP tools for database operations.
+
+### Structure
+
+```
+db-operations/
+├── SKILL.md                    # Core patterns + MCP tool usage
+├── references/
+│   ├── schema.md               # Database schema documentation
+│   └── query-patterns.md       # Common query templates
+└── scripts/
+    └── validate-schema.js      # Schema consistency checker
+```
+
+### SKILL.md Excerpt
+
+````markdown
+---
+name: db-operations
+description: Database operations via MCP tools for users, orders, and products tables. Use when querying databases, writing migrations, or managing schema changes.
+---
+
+# Database Operations
+
+## Quick Start
+
+Execute read queries with the MCP database tool:
+
+```
+Use mcp__db__query with sql: "SELECT * FROM users WHERE active = 1"
+```
+
+For write operations:
+
+```
+Use mcp__db__execute with sql and params for parameterized queries
+```
+````
+
+### Why It Works
+
+- Documents specific MCP tool names for the domain
+- Provides parameter patterns for each tool
+- Schema details in references, not inline
+- See [mcp-integration.md](mcp-integration.md) for MCP patterns
+
+---
+
 ## Quick Checklist
 
 Before considering a skill "done":
@@ -407,3 +459,5 @@ Before considering a skill "done":
 - [ ] Tested in real conversations
 - [ ] No TODO placeholders
 - [ ] Imperative voice throughout
+
+If something isn't working, see [troubleshooting.md](troubleshooting.md) for common issues and fixes.

@@ -166,6 +166,8 @@ description: What it does and when to use it
 
 Only `name` and `description` are supported. No other YAML fields.
 
+**Known discrepancy**: Some Anthropic documentation references an `allowed-tools` frontmatter field. This field is **not supported** in Claude Code and will be ignored. Do not use it.
+
 ### Optional Bundled Content
 
 ```
@@ -333,6 +335,83 @@ Skills run in the code execution container with:
 
 - [Product Announcement](https://www.anthropic.com/news/skills)
 - [Engineering Blog](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills)
+
+---
+
+## Skill Categories
+
+Skills generally fall into these categories:
+
+### Domain Knowledge Skills
+
+Encode expertise about a specific domain, technology, or codebase:
+- Project context and conventions
+- API documentation and patterns
+- Database schema and query patterns
+
+### Workflow Skills
+
+Guide Claude through multi-step processes:
+- Code review checklists
+- Deployment procedures
+- Testing workflows
+- Data migration steps
+
+### Tool Integration Skills
+
+Bridge Claude to external tools and systems:
+- MCP server usage patterns (see [mcp-integration.md](mcp-integration.md))
+- CLI tool documentation
+- Service-specific workflows
+
+### Generator Skills
+
+Create or transform content:
+- Code scaffolding with scripts
+- Document generation from templates
+- Data transformation pipelines
+
+---
+
+## Workflow Patterns
+
+### Linear Workflow
+
+Skill guides Claude through ordered steps:
+
+```markdown
+## Deployment Process
+1. Run validation: `node scripts/validate.js`
+2. Build the project
+3. Run tests
+4. Deploy to staging
+5. Verify staging
+6. Deploy to production
+```
+
+### Decision Tree Workflow
+
+Skill provides branching logic based on conditions:
+
+```markdown
+## Error Handling
+- If HTTP 401 → Re-authenticate, retry once
+- If HTTP 429 → Wait and retry with backoff
+- If HTTP 5xx → Log error, alert, do not retry
+```
+
+### Iterative Workflow
+
+Skill defines a loop for refinement:
+
+```markdown
+## Review Cycle
+1. Run linter
+2. Fix reported issues
+3. Run tests
+4. If failures remain, return to step 2
+5. Submit for review
+```
 
 ---
 

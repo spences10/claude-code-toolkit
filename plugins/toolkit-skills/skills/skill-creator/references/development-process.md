@@ -192,6 +192,35 @@ A well-designed skill:
 - Improves with each conversation (you notice missing pieces)
 - Saves you time (no more re-explaining the same concepts)
 
+## Testing Checklist
+
+Before considering a skill complete, run through these checks:
+
+### Structural
+
+- [ ] `npx claude-skills-cli validate --strict` passes
+- [ ] All reference links resolve to existing files
+- [ ] Scripts have correct permissions and shebang lines
+- [ ] No TODO placeholders remain
+
+### Behavioral
+
+- [ ] Skill triggers from natural language (don't name the skill directly)
+- [ ] Skill does NOT trigger for unrelated requests
+- [ ] Claude follows instructions from SKILL.md
+- [ ] Claude reads reference files when needed
+- [ ] Scripts produce expected output
+
+### Content Quality
+
+- [ ] Description has keywords and "Use when..." trigger
+- [ ] Imperative voice throughout
+- [ ] Real examples, not generic placeholders
+- [ ] SKILL.md body under 150 lines / 5k words
+
+For a more detailed testing methodology, see [testing-guide.md](testing-guide.md).
+For common issues during development, see [troubleshooting.md](troubleshooting.md).
+
 ## Tips
 
 - **Start minimal**: Better to add than to remove

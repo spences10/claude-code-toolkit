@@ -77,6 +77,15 @@
       "author": { "name": "Scott Spence" },
       "category": "skills",
       "keywords": ["ci", "debug", "docker", "techdebt", "refactoring"]
+    },
+    {
+      "name": "dev-practices",
+      "source": "./plugins/dev-practices",
+      "description": "Development practices: TDD workflow with red-green-refactor",
+      "version": "0.0.16",
+      "author": { "name": "Scott Spence" },
+      "category": "skills",
+      "keywords": ["tdd", "testing", "red-green-refactor", "test-driven"]
     }
   ]
 }
