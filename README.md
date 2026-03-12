@@ -116,17 +116,6 @@ git clone git@github.com:spences10/claude-code-toolkit.git ~/repos/claude-code-t
 
 ## Releasing Updates
 
-```bash
-# 1. Make your changes
-
-# 2. Bump version (updates all plugin.json files)
-./scripts/bump-version.sh 0.0.2
-
-# 3. Update CHANGELOG.md
-
-# 4. Commit and push
-git add -A && git commit -m "chore: bump to 0.0.2" && git push
-```
-
-Users with auto-update enabled get updates on Claude Code startup.
-Others can run `/plugin update plugin-name@spences10-claude-code-toolkit`.
+Version lives in one place: `.claude-plugin/marketplace.json`. Bump all
+`"version"` values there, commit, and push. Users with auto-update get
+changes on startup. Others run `/plugin update plugin-name@spences10-claude-code-toolkit`.

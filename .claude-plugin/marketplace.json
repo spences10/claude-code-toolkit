@@ -1,5 +1,4 @@
 {
-  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "claude-code-toolkit",
   "description": "Productivity and ecosystem tools for Claude Code",
   "owner": {
