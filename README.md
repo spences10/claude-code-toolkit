@@ -15,6 +15,7 @@ Productivity and ecosystem tools for Claude Code.
 /plugin install claude-workflow
 /plugin install dev-environment
 /plugin install devops-skills
+/plugin install dev-practices
 ```
 
 ## Plugins
@@ -62,6 +63,7 @@ Claude Code workflow patterns.
 | **advanced-prompting** | High-leverage prompts that challenge Claude's defaults |
 | **claude-md-maintenance** | Maintain CLAUDE.md files effectively |
 | **orchestration** | Multi-agent orchestration patterns for team mode |
+| **structured-rpi** | Enhanced Research-Plan-Implement workflow with structured phase gates |
 
 ### dev-environment
 
@@ -80,6 +82,15 @@ DevOps patterns.
 | ----- | ----------- |
 | **ci-debug-workflow** | Debug failing CI pipelines and reproduce bugs locally |
 | **techdebt-finder** | Find duplicated code, inconsistent patterns, and refactoring opportunities |
+| **deslop** | Identify and remove AI-generated code patterns (slop) |
+
+### dev-practices
+
+Development practice skills.
+
+| Skill | Description |
+| ----- | ----------- |
+| **tdd** | Test-Driven Development workflow with red-green-refactor cycle |
 
 ## Ecosystem
 
