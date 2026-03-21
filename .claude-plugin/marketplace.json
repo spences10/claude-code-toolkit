@@ -1,20 +1,18 @@
 {
-  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "claude-code-toolkit",
-  "description": "Productivity and ecosystem tools for Claude Code",
   "owner": {
     "name": "Scott Spence"
   },
   "metadata": {
     "description": "Productivity and ecosystem tools for Claude Code",
-    "version": "0.0.18"
+    "version": "0.0.19"
   },
   "plugins": [
     {
       "name": "mcp-essentials",
       "source": "./plugins/mcp-essentials",
       "description": "Recommended MCP tools: omnisearch, sqlite-tools, mcpick",
-      "version": "0.0.18",
+      "version": "0.0.19",
       "author": { "name": "Scott Spence" },
       "category": "mcp",
       "keywords": ["mcp", "omnisearch", "sqlite", "mcpick"],
@@ -25,7 +23,7 @@
       "name": "analytics",
       "source": "./plugins/analytics",
       "description": "Query Claude Code usage from ccrecall database",
-      "version": "0.0.18",
+      "version": "0.0.19",
       "author": { "name": "Scott Spence" },
       "category": "analytics",
       "keywords": ["analytics", "tokens", "sessions"],
@@ -36,7 +34,7 @@
       "name": "toolkit-skills",
       "source": "./plugins/toolkit-skills",
       "description": "Core skills: ecosystem guide, skill creator, research patterns, session reflection, plugin development. Includes UserPromptSubmit hook for forced skill evaluation.",
-      "version": "0.0.18",
+      "version": "0.0.19",
       "author": { "name": "Scott Spence" },
       "category": "skills",
       "keywords": [
@@ -55,7 +53,7 @@
       "name": "claude-workflow",
       "source": "./plugins/claude-workflow",
       "description": "Claude Code workflow patterns: prompting, CLAUDE.md maintenance, multi-agent orchestration",
-      "version": "0.0.18",
+      "version": "0.0.19",
       "author": { "name": "Scott Spence" },
       "category": "skills",
       "keywords": [
@@ -74,7 +72,7 @@
       "name": "dev-environment",
       "source": "./plugins/dev-environment",
       "description": "Development environment setup: git worktrees, terminal optimization",
-      "version": "0.0.18",
+      "version": "0.0.19",
       "author": { "name": "Scott Spence" },
       "category": "skills",
       "keywords": ["worktree", "terminal", "ghostty", "tmux", "parallel"],
@@ -85,7 +83,7 @@
       "name": "devops-skills",
       "source": "./plugins/devops-skills",
       "description": "DevOps patterns: CI debugging, tech debt detection",
-      "version": "0.0.18",
+      "version": "0.0.19",
       "author": { "name": "Scott Spence" },
       "category": "skills",
       "keywords": ["ci", "debug", "docker", "techdebt", "refactoring"],
@@ -96,7 +94,7 @@
       "name": "dev-practices",
       "source": "./plugins/dev-practices",
       "description": "Development practices: TDD workflow with red-green-refactor",
-      "version": "0.0.18",
+      "version": "0.0.19",
       "author": { "name": "Scott Spence" },
       "category": "skills",
       "keywords": ["tdd", "testing", "red-green-refactor", "test-driven"],

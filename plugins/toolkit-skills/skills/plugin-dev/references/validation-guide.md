@@ -154,6 +154,27 @@ Not all hooks work reliably. Known issues as of Jan 2026:
 
 **Recommendation**: Use UserPromptSubmit for reliable plugin hooks. Avoid Stop hooks for user-facing features - they fire but output is silent.
 
+## Additional Marketplace Validation Errors
+
+| Error | Cause | Solution |
+| ----- | ----- | -------- |
+| `File not found: .claude-plugin/marketplace.json` | Missing manifest | Create `.claude-plugin/marketplace.json` with required fields |
+| `Invalid JSON syntax: Unexpected token...` | JSON syntax error | Check for missing commas, extra commas, unquoted strings |
+| `YAML frontmatter failed to parse: ...` | Invalid YAML in skill/agent/command | Fix YAML syntax in frontmatter block |
+| `Invalid JSON syntax: ...` (hooks.json) | Malformed `hooks/hooks.json` | Fix JSON. Malformed hooks.json prevents entire plugin from loading |
+| `Plugin name "x" is not kebab-case` | Invalid name format | Use `my-plugin` format (lowercase, hyphens only) |
+
+## Plugin Load Errors
+
+| Error | Cause | Solution |
+| ----- | ----- | -------- |
+| `Plugin not loading` | Invalid `plugin.json` | Validate with `claude plugin validate` |
+| `Commands not appearing` | Wrong directory structure | Ensure `commands/` at root, not inside `.claude-plugin/` |
+| `Hooks not firing` | Script not executable | Run `chmod +x script.sh` |
+| `MCP server fails` | Missing `${CLAUDE_PLUGIN_ROOT}` | Use variable for all plugin paths |
+| `Path errors` | Absolute paths used | All paths must be relative, start with `./` |
+| `Conflicting manifests` | Components in both plugin.json and marketplace entry | Use `strict: false` in marketplace or remove from one |
+
 ## Warnings (Non-blocking)
 
 | Warning                               | Meaning                    |
@@ -167,4 +188,28 @@ Not all hooks work reliably. Known issues as of Jan 2026:
 1. **Check JSON syntax**: Missing commas, unquoted strings
 2. **Verify paths exist**: `ls ./plugins/my-plugin`
 3. **Check plugin.json exists**: `ls ./plugins/my-plugin/.claude-plugin/`
-4. **Compare to working example**: Check svelte-skills-kit or official demos
+4. **Test plugin directly**: `claude --plugin-dir ./my-plugin`
+5. **Debug mode**: `claude --debug` for verbose output
+6. **Reload**: `/reload-plugins` to pick up changes
+7. **Compare to working example**: Check claude-code-toolkit or official demos
+
+## Directory Structure Mistakes
+
+The most common mistake is putting components inside `.claude-plugin/`:
+
+```
+# WRONG
+my-plugin/
+├── .claude-plugin/
+│   ├── plugin.json
+│   ├── commands/      ← Should NOT be here
+│   └── skills/        ← Should NOT be here
+
+# CORRECT
+my-plugin/
+├── .claude-plugin/
+│   └── plugin.json    ← Only this goes here
+├── commands/           ← At root level
+├── skills/             ← At root level
+└── hooks/              ← At root level
+```

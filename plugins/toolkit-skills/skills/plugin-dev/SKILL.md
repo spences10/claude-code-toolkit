@@ -41,7 +41,7 @@ Required fields in `.claude-plugin/marketplace.json`:
 
 ## Plugin Schema
 
-Required fields in `.claude-plugin/plugin.json`:
+Required field in `.claude-plugin/plugin.json` (only `name` is required):
 
 ```json
 {
@@ -51,17 +51,30 @@ Required fields in `.claude-plugin/plugin.json`:
 }
 ```
 
+The `name` is also the **skill namespace** — skills become `/plugin-name:skill-name`.
+
+## Development
+
+```bash
+# Test plugin locally without installing
+claude --plugin-dir ./my-plugin
+
+# Reload after changes (inside Claude Code)
+/reload-plugins
+```
+
 ## Common Errors
 
-| Error                        | Fix                                 |
-| ---------------------------- | ----------------------------------- |
-| `owner: expected object`     | Add `"owner": { "name": "..." }`    |
-| `plugins.0: expected object` | Change string array to object array |
-| `source: Invalid input`      | Use `./path/to/plugin` format       |
+| Error                               | Fix                                              |
+| ----------------------------------- | ------------------------------------------------ |
+| `owner: expected object`            | Add `"owner": { "name": "..." }`                 |
+| `plugins.0: expected object`        | Change string array to object array              |
+| `source: Invalid input`             | Use `./path/to/plugin` format                    |
+| Components inside `.claude-plugin/` | Move `commands/`, `skills/`, etc. to plugin root |
 
 ## References
 
 - [marketplace-schema.md](references/marketplace-schema.md) - Full marketplace fields
 - [plugin-schema.md](references/plugin-schema.md) - Full plugin fields
 - [validation-guide.md](references/validation-guide.md) - Debugging validation errors
-- [distribution.md](references/distribution.md) - Publishing to GitHub
+- [distribution.md](references/distribution.md) - Publishing, versioning, and release channels
