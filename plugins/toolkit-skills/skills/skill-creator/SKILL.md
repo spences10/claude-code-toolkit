@@ -20,11 +20,11 @@ Create a skill when you notice:
 
 Skills load in 3 levels:
 
-1. **Metadata** (~27 tokens) - YAML frontmatter for triggering
-2. **Instructions** (<680 tokens) - SKILL.md body with core patterns
+1. **Metadata** (~27 tokens optimal, ~100 max) - YAML frontmatter for triggering
+2. **Instructions** (<50 lines recommended, 500 max) - SKILL.md body with core patterns
 3. **Resources** (unlimited) - references/ scripts/ assets/ loaded on demand
 
-**Key**: Keep Levels 1 & 2 lean. Move details to Level 3.
+**Key**: Keep Levels 1 & 2 lean. Move details to Level 3. Use `npx claude-skills-cli validate` to check budgets.
 
 ## Structure
 

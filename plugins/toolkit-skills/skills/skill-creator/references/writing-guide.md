@@ -87,6 +87,8 @@ architectural patterns affect your implementation...
 
 The description determines when Claude triggers your skill. Make it count.
 
+**Write in third person.** The description is injected into the system prompt; inconsistent point-of-view causes discovery problems.
+
 ### Description Formula
 
 ```
@@ -120,6 +122,7 @@ description: Create type-safe React components with hooks and TypeScript
 
 ### Description Checklist
 
+- [ ] Written in third person
 - [ ] Includes technology names
 - [ ] Lists specific operations
 - [ ] Mentions data types or domains
@@ -127,6 +130,48 @@ description: Create type-safe React components with hooks and TypeScript
 - [ ] Contains searchable keywords
 - [ ] Under 1024 characters
 - [ ] Over 50 characters (not too short)
+
+---
+
+## Degrees of Freedom
+
+Match instruction specificity to the task's fragility and variability.
+
+### High Freedom (text-based instructions)
+
+Use when output varies by context and Claude's judgment adds value.
+
+```markdown
+## Code review process
+1. Analyze the code structure and organization
+2. Check for potential bugs or edge cases
+3. Suggest improvements for readability and maintainability
+4. Verify adherence to project conventions
+```
+
+### Medium Freedom (pseudocode or scripts with parameters)
+
+Use when the process is consistent but details vary.
+
+```python
+def generate_report(data, format="markdown", include_charts=True):
+    # Process data
+    # Generate output in specified format
+    # Optionally include visualizations
+```
+
+### Low Freedom (specific scripts, no modification)
+
+Use when exact execution matters (migrations, deployments, compliance).
+
+```markdown
+## Database migration
+Run exactly this script:
+\`\`\`bash
+python scripts/migrate.py --verify --backup
+\`\`\`
+Do not modify the command or add additional flags.
+```
 
 ---
 
@@ -286,12 +331,13 @@ const response = await fetch(url);
 
 ---
 
-## Word Count Guidelines
+## Size Guidelines
 
 ### SKILL.md Body
 
-- **Target**: 2k-5k words
-- **Maximum**: 5k words
+- **CLI recommended**: <50 lines, <1000 words (optimal when many skills loaded)
+- **Anthropic official max**: 500 lines, ~5k tokens
+- **Validate**: `npx claude-skills-cli validate` (default strict) or `--loose` (official limits)
 - **If exceeding**: Move content to references/
 
 ### Reference Files
@@ -299,6 +345,8 @@ const response = await fetch(url);
 - **Target**: 1k-10k words per file
 - **Maximum**: 15k words per file
 - **If exceeding**: Split into multiple focused files
+- **Over 100 lines**: Include a table of contents at top
+- **Nesting**: Keep references one level deep from SKILL.md
 
 ### Description
 
@@ -367,12 +415,128 @@ references/schema.md has complete schema
 
 ---
 
+## Anti-Patterns
+
+### Avoid Deeply Nested References
+
+Claude may partially read files referenced from other referenced files, using `head -100` to preview rather than reading completely.
+
+```markdown
+# Bad: Too deep
+SKILL.md → advanced.md → details.md → actual info
+
+# Good: One level deep
+SKILL.md → advanced.md (complete info)
+SKILL.md → reference.md (complete info)
+```
+
+### Avoid Offering Too Many Options
+
+Provide a default with an escape hatch, not a menu of choices.
+
+```markdown
+# Bad
+"You can use pypdf, or pdfplumber, or PyMuPDF, or pdf2image..."
+
+# Good
+Use pdfplumber for text extraction.
+For scanned PDFs requiring OCR, use pdf2image with pytesseract instead.
+```
+
+### Avoid Time-Sensitive Information
+
+```markdown
+# Bad
+If you're doing this before August 2025, use the old API.
+
+# Good
+## Current method
+Use the v2 API endpoint.
+
+## Old patterns
+<details>
+<summary>Legacy v1 API (deprecated)</summary>
+The v1 endpoint is no longer supported.
+</details>
+```
+
+### Avoid Windows-Style Paths
+
+Always use forward slashes, even on Windows:
+
+```
+scripts/helper.py     ✅
+scripts\helper.py     ❌
+```
+
+---
+
+## Workflow Patterns
+
+### Checklist Pattern
+
+For complex multi-step tasks, provide a checklist Claude can copy and track:
+
+````markdown
+## Form filling workflow
+
+Copy this checklist and check off items as you complete them:
+
+```
+Task Progress:
+- [ ] Step 1: Analyze the form
+- [ ] Step 2: Create field mapping
+- [ ] Step 3: Validate mapping
+- [ ] Step 4: Fill the form
+- [ ] Step 5: Verify output
+```
+````
+
+### Feedback Loop Pattern
+
+Run validator → fix errors → repeat. Greatly improves output quality:
+
+```markdown
+## Document editing process
+1. Make edits
+2. Validate: `python scripts/validate.py`
+3. If validation fails: fix issues, run validation again
+4. Only proceed when validation passes
+5. Rebuild output
+```
+
+### Plan-Validate-Execute Pattern
+
+For complex open-ended tasks, have Claude create a plan file, validate it, then execute:
+
+```markdown
+## Batch update workflow
+1. Analyze inputs → create `changes.json`
+2. Validate plan: `python scripts/validate_changes.py changes.json`
+3. If valid → execute changes
+4. Verify output
+```
+
+### Conditional Workflow Pattern
+
+Guide Claude through decision points:
+
+```markdown
+## Document modification
+1. Determine modification type:
+   **Creating new content?** → Follow "Creation workflow"
+   **Editing existing?** → Follow "Editing workflow"
+```
+
+---
+
 ## Checklist
 
 Before finalizing a skill:
 
 ### Content
 
+- [ ] Description in third person
 - [ ] Description includes keywords and triggers
 - [ ] Imperative voice throughout
 - [ ] Specific, not vague
@@ -385,15 +549,19 @@ Before finalizing a skill:
 - [ ] 3-5 Core Patterns documented
 - [ ] Links to references working
 - [ ] Scripts described
-- [ ] Under 5k words (SKILL.md body)
+- [ ] SKILL.md body under 50 lines (strict) or 500 lines (loose)
+- [ ] References one level deep (no nested chains)
+- [ ] Long reference files have table of contents
 
 ### Technical
 
+- [ ] `npx claude-skills-cli validate` passes
 - [ ] YAML frontmatter valid
+- [ ] Name is kebab-case, no "anthropic"/"claude", no XML tags
 - [ ] Name matches directory
+- [ ] No README.md in skill folder
 - [ ] Scripts are executable
 - [ ] References mentioned in SKILL.md
-- [ ] Validation passes
 
 ### Testing
 

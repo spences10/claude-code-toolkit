@@ -23,6 +23,12 @@ npx claude-skills-cli <command>
 pnpx claude-skills-cli <command>
 ```
 
+### Using bun
+
+```bash
+bunx claude-skills-cli <command>
+```
+
 ### As Dev Dependency
 
 ```bash
@@ -54,11 +60,13 @@ claude-skills-cli init [options]
 
 #### Options
 
-| Option                 | Type   | Required | Description                                          |
-| ---------------------- | ------ | -------- | ---------------------------------------------------- |
-| `--name <name>`        | string | Yes\*    | Skill name (kebab-case, lowercase)                   |
-| `--description <desc>` | string | No       | Skill description (default: "TODO: Add description") |
-| `--path <path>`        | string | No       | Custom path (mutually exclusive with --name)         |
+| Option                 | Type    | Required | Description                                          |
+| ---------------------- | ------- | -------- | ---------------------------------------------------- |
+| `--name <name>`        | string  | Yes\*    | Skill name (kebab-case, lowercase)                   |
+| `--description <desc>` | string  | No       | Skill description (default: "TODO: Add description") |
+| `--path <path>`        | string  | No       | Custom path (mutually exclusive with --name)         |
+| `--with-examples`      | boolean | No       | Include example files (scripts/, assets/)            |
+| `--global`             | boolean | No       | Install in ~/.claude/skills/ (all projects)          |
 
 \*Either `--name` or `--path` must be provided
 
@@ -105,18 +113,36 @@ claude-skills-cli validate <skill-path> [options]
 
 #### Options
 
-| Option     | Type    | Description                            |
-| ---------- | ------- | -------------------------------------- |
-| `--strict` | boolean | Treat warnings as errors (exit code 1) |
+| Option      | Type    | Description                                   |
+| ----------- | ------- | --------------------------------------------- |
+| `--strict`  | boolean | Treat warnings as errors (exit code 1)        |
+| `--lenient` | boolean | Use relaxed limits (150 lines max)            |
+| `--loose`   | boolean | Use Anthropic official limits (500 lines max) |
+| `--format`  | string  | Output format: `text` (default) or `json`     |
+
+#### Validation Modes
+
+| Mode        | SKILL.md Lines | Description                                      |
+| ----------- | -------------- | ------------------------------------------------ |
+| Default     | <50            | Strict context-efficiency (best for many skills) |
+| `--lenient` | <150           | Relaxed for larger skills                        |
+| `--loose`   | <500           | Anthropic official limits                        |
+| `--strict`  | (same as mode) | Warnings become errors                           |
 
 #### Examples
 
 ```bash
-# Validate skill
+# Validate skill (default strict limits)
 npx claude-skills-cli validate .claude/skills/my-skill
 
 # Strict mode (warnings = errors)
 npx claude-skills-cli validate .claude/skills/my-skill --strict
+
+# Use Anthropic official limits
+npx claude-skills-cli validate .claude/skills/my-skill --loose
+
+# JSON output for CI
+npx claude-skills-cli validate .claude/skills/my-skill --format json
 ```
 
 #### Validation Checks
@@ -131,7 +157,7 @@ npx claude-skills-cli validate .claude/skills/my-skill --strict
 
 **Level 2 (SKILL.md Body):**
 
-- Line count: ~50 (optimal), <80 (good), <150 (warning)
+- Line count: <50 (default), <150 (lenient), <500 (loose)
 - Word count: <1000 (optimal), <5000 (max)
 - Code blocks: 1-2 (optimal), ≤3 (good), >3 (warning)
 - Sections: 3-5 (optimal), ≤8 (good), >8 (warning)
@@ -220,9 +246,59 @@ npx claude-skills-cli package .claude/skills/my-skill --output builds/
 
 The created zip can be:
 
-1. Uploaded to Claude.ai (Settings > Features > Skills)
+1. Uploaded to Claude.ai (Settings > Capabilities > Skills)
 2. Uploaded via API (`/v1/skills` endpoint)
 3. Shared with team members
+
+---
+
+### `install` - Install Bundled Skill
+
+Install a skill from a bundled collection.
+
+#### Syntax
+
+```bash
+claude-skills-cli install
+```
+
+---
+
+### `stats` - Skill Overview
+
+Show overview of all skills in a directory.
+
+#### Syntax
+
+```bash
+claude-skills-cli stats [directory]
+```
+
+#### Arguments
+
+| Argument    | Default          | Description                 |
+| ----------- | ---------------- | --------------------------- |
+| `directory` | `.claude/skills` | Directory containing skills |
+
+#### Example
+
+```bash
+npx claude-skills-cli stats .claude/skills
+```
+
+---
+
+### `add-hook` - Add Activation Hook
+
+Add a skill activation hook to `.claude/settings.json`.
+
+#### Syntax
+
+```bash
+claude-skills-cli add-hook
+```
+
+Adds a `UserPromptSubmit` hook that automatically evaluates and activates skills.
 
 ---
 
@@ -244,7 +320,7 @@ vim .claude/skills/database-queries/references/schema.md
 # 4. Validate
 npx claude-skills-cli validate .claude/skills/database-queries
 
-# 5. Package
+# 5. Package for distribution
 npx claude-skills-cli package .claude/skills/database-queries
 ```
 

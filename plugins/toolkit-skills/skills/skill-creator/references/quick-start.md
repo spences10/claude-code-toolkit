@@ -51,8 +51,8 @@ my-skill/
 
 ```markdown
 ---
-name: skill-name # Unique identifier
-description: Short desc # <200 chars, shows in skill list
+name: skill-name # Unique identifier (kebab-case, max 64 chars)
+description: What it does and when to use it. Use when [triggers].
 ---
 
 # Skill Title
@@ -68,18 +68,45 @@ Core patterns and instructions...
 More essential guidance...
 ```
 
+## Frontmatter Requirements
+
+### `name` field
+
+- Max 64 characters
+- Lowercase letters, numbers, and hyphens only
+- Cannot contain "anthropic" or "claude" (reserved words)
+- Cannot contain XML tags (`<` or `>`)
+- Prefer **gerund form**: `processing-pdfs`, `analyzing-data`, `managing-databases`
+- Acceptable alternatives: `pdf-processing`, `process-pdfs`
+- Avoid generic names: `helper`, `utils`, `tools`, `data`
+
+### `description` field
+
+- Max 1024 characters, min ~50 characters
+- Cannot contain XML tags
+- Write in **third person** (description is injected into system prompt)
+- Include both what the skill does AND when to use it
+- Include searchable keywords and trigger phrases
+
+### No README.md
+
+Do not include a README.md inside the skill folder. All documentation goes in SKILL.md or references/.
+
 ## Progressive Disclosure Strategy
 
 ### Level 1: Metadata (Always Loaded)
 
 - YAML frontmatter only
-- Target: <200 chars, <30 tokens
+- CLI recommended: <200 chars, ~27 tokens (optimal for many skills)
+- Anthropic max: 1024 chars, ~100 tokens
 - Used for: Skill discovery and triggering
 
 ### Level 2: Instructions (Loaded When Triggered)
 
 - SKILL.md body content
-- Target: <50 lines, <1000 words, <680 tokens
+- CLI recommended: <50 lines, <1000 words (optimal for context efficiency)
+- Anthropic max: 500 lines, ~5k tokens
+- Use `npx claude-skills-cli validate` to check (default strict, `--loose` for official limits)
 - Contains: Core patterns, essential rules, reference links
 
 ### Level 3: Resources (Loaded On Demand)
@@ -87,6 +114,8 @@ More essential guidance...
 - references/ scripts/ assets/ directories
 - Size: Unlimited
 - Contains: Detailed docs, code, templates
+- Keep references **one level deep** from SKILL.md (avoid nesting references that link to other references)
+- For reference files over 100 lines, include a **table of contents** at the top
 
 ## Tips for Effective Skills
 
@@ -95,3 +124,4 @@ More essential guidance...
 - **Link clearly**: Use relative links to reference files
 - **Test often**: Validate with `pnpx claude-skills-cli validate`
 - **Stay focused**: One skill = one clear purpose
+- **Evaluate first**: Create evaluations BEFORE writing extensive documentation

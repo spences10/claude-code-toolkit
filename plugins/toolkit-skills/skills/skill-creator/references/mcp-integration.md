@@ -52,6 +52,25 @@ Use `mcp__api__request` for all external API calls.
 Include the authorization header from the environment config.
 ```
 
+## MCP Tool Naming
+
+Always use fully qualified tool names to avoid "tool not found" errors, especially when multiple MCP servers are available.
+
+**Cross-platform format**: `ServerName:tool_name`
+
+```markdown
+Use the BigQuery:bigquery_schema tool to retrieve table schemas.
+Use the GitHub:create_issue tool to create issues.
+```
+
+**Claude Code format**: `mcp__server__tool_name`
+
+```markdown
+Use `mcp__db__query` for read operations.
+```
+
+Both formats work in Claude Code. Use the format that matches your target platform.
+
 ## Patterns
 
 ### Pattern 1: Skill as MCP Tool Guide

@@ -274,19 +274,19 @@ description: REST API client with TypeScript types for user and data endpoints. 
 
 ```yaml
 name: api-client
-description: [50-100 words with keywords]
+description: [keyword-rich, third person, includes "Use when..." triggers]
 ```
 
-**Token cost**: ~100 tokens
+**Token cost**: ~100 tokens per skill
 
 ### Level 2: SKILL.md Body (When Triggered)
 
 - Quick Start example
 - 3-5 core patterns
-- Links to references
+- Links to references (one level deep)
 - Script descriptions
 
-**Token cost**: ~3-5k tokens
+**Token cost**: Under 5k tokens / 500 lines
 
 ### Level 3: Resources (As Needed)
 

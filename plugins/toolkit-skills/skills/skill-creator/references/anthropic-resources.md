@@ -99,12 +99,30 @@ Skills run in a code execution environment where Claude has:
 
 > "As you work on a task with Claude, ask Claude to capture its successful approaches and common mistakes into reusable context and code within a skill."
 
-**Workflow**:
+**Workflow** (Claude A creates, Claude B tests):
 
-1. Work on task with Claude
-2. Notice successful patterns
-3. Ask Claude to capture them in skill
-4. Test and refine
+1. Complete a task with Claude A using normal prompting
+2. Identify reusable patterns from the conversation
+3. Ask Claude A to create a skill capturing those patterns
+4. Review for conciseness — remove what Claude already knows
+5. Test with Claude B (fresh instance with skill loaded) on similar tasks
+6. If Claude B struggles, return to Claude A with specifics to refine
+
+> "Claude models understand the Skill format and structure natively. You don't need special system prompts or a 'writing skills' skill to get Claude to help create Skills."
+
+### 5. Set Appropriate Degrees of Freedom
+
+> Match the level of specificity to the task's fragility and variability.
+
+- **High freedom** (text instructions): Output varies by context, Claude's judgment adds value
+- **Medium freedom** (pseudocode/scripts with params): Process is consistent but details vary
+- **Low freedom** (exact scripts): Exact execution matters — migrations, compliance, deployments
+
+### 6. Test with All Models
+
+> "Skills act as additions to models, so effectiveness depends on the underlying model."
+
+What works for Opus may need more detail for Haiku. If using across models, aim for instructions that work with all of them.
 
 ---
 
@@ -164,9 +182,21 @@ description: What it does and when to use it
 | `name`        | 64 characters   | Yes      |
 | `description` | 1024 characters | Yes      |
 
-Only `name` and `description` are supported. No other YAML fields.
+Only `name` and `description` are required and universally supported. No other YAML fields are recognized in Claude Code.
 
-**Known discrepancy**: Some Anthropic documentation references an `allowed-tools` frontmatter field. This field is **not supported** in Claude Code and will be ignored. Do not use it.
+**Name restrictions**:
+
+- Lowercase letters, numbers, and hyphens only
+- Cannot contain "anthropic" or "claude" (reserved words)
+- Cannot contain XML tags (`<` or `>`)
+- Prefer gerund form: `processing-pdfs`, `analyzing-spreadsheets`
+
+**Description restrictions**:
+
+- Cannot contain XML tags
+- Write in **third person** (injected into system prompt)
+
+**Known discrepancy**: Some Anthropic documentation references `allowed-tools`, `license`, `compatibility`, and `metadata` frontmatter fields. These fields are **not supported** in Claude Code and will be ignored. The Complete Guide PDF mentions them for API/claude.ai contexts only.
 
 ### Optional Bundled Content
 
@@ -245,11 +275,11 @@ If you must use untrusted skills:
 
 ### Runtime Constraints
 
-Skills run in the code execution container with:
+Runtime constraints vary by platform:
 
-- **No network access**: Cannot make external API calls
-- **No runtime package installation**: Only pre-installed packages available
-- **Sandboxed execution**: Isolated from host system
+- **Claude API**: No network access, no runtime package installation, sandboxed execution
+- **Claude.ai**: Varying network access depending on user/admin settings
+- **Claude Code**: Full network access (same as any program on the user's machine), but global package installation is discouraged
 
 ---
 
@@ -279,21 +309,27 @@ Skills run in the code execution container with:
 ### Claude.ai
 
 - **Pre-built Skills**: PowerPoint, Excel, Word, PDF (automatic)
-- **Custom Skills**: Upload as zip (Settings > Features)
-- **Sharing**: Individual user only (not org-wide)
+- **Custom Skills**: Upload as zip (Settings > Capabilities > Skills)
+- **Sharing**: Individual user only (not org-wide, no central admin management)
 
 ### Claude API
 
 - **Pre-built Skills**: Reference by `skill_id` (e.g., `pptx`, `xlsx`)
 - **Custom Skills**: Upload via `/v1/skills` endpoints
 - **Sharing**: Workspace-wide
+- **Requires beta headers**: `code-execution-2025-08-25`, `skills-2025-10-02`, `files-api-2025-04-14`
 
 ### Claude Code
 
 - **Custom Skills only**: Filesystem-based (`.claude/skills/` or `~/.claude/skills/`)
-- **Sharing**: Via git/version control
+- **Sharing**: Via git/version control or Claude Code Plugins
 
-**Important**: Skills don't sync across surfaces. Upload separately for each platform.
+### Claude Agent SDK
+
+- **Custom Skills**: Filesystem-based in `.claude/skills/`
+- Enable by including `"Skill"` in `allowed_tools` configuration
+
+**Important**: Custom Skills do not sync across surfaces. Upload separately for each platform.
 
 ---
 
@@ -324,12 +360,19 @@ Skills run in the code execution container with:
 - [Agent Skills Overview](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview)
 - [Quickstart Tutorial](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/quickstart)
 - [Best Practices](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/best-practices)
-- [API Skills Guide](https://docs.claude.com/en/api/skills-guide)
+- [API Skills Guide](https://docs.claude.com/en/build-with-claude/skills-guide)
+- [Skills in Claude Code](https://code.claude.com/docs/en/skills)
+- [Skills in Agent SDK](https://docs.claude.com/en/agent-sdk/skills)
+- [Agent Skills Standard](https://agentskills.io/)
+
+### Guides
+
+- [The Complete Guide to Building Skills for Claude](https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf) (PDF)
+- [Skills Cookbook](https://platform.claude.com/cookbook/skills-notebooks-01-skills-introduction)
 
 ### Examples
 
 - [Skills Repository](https://github.com/anthropics/skills)
-- [Skills Cookbook](https://github.com/anthropics/claude-cookbooks/tree/main/skills)
 
 ### Articles
 
@@ -412,6 +455,58 @@ Skill defines a loop for refinement:
 4. If failures remain, return to step 2
 5. Submit for review
 ```
+
+---
+
+## Anti-Patterns (Official)
+
+### Avoid Deeply Nested References
+
+> Keep references one level deep from SKILL.md. Claude may partially read files when they're referenced from other referenced files.
+
+### Avoid Too Many Options
+
+> Provide a default with an escape hatch, not a menu of choices.
+
+### Avoid Time-Sensitive Information
+
+> Use "Old patterns" sections with `<details>` instead of date-conditional instructions.
+
+### Avoid Windows-Style Paths
+
+> Always use forward slashes. Unix paths work everywhere; Windows paths fail on Unix.
+
+### No README.md in Skill Folder
+
+> All documentation goes in SKILL.md or references/. Repository-level README is separate.
+
+---
+
+## Official Workflow Patterns
+
+### Checklist Pattern
+
+Provide a checklist Claude copies and tracks through multi-step tasks.
+
+### Feedback Loop Pattern
+
+Run validator → fix errors → repeat until passing. Greatly improves output quality.
+
+### Plan-Validate-Execute Pattern
+
+For complex tasks: create structured plan file → validate with script → execute. Catches errors before they propagate.
+
+### Template Pattern
+
+Provide output templates. Match strictness to requirements — "ALWAYS use this exact structure" vs "sensible default, use judgment."
+
+### Examples Pattern
+
+Input/output pairs for output-quality-dependent skills. Examples communicate style and detail better than descriptions.
+
+### Conditional Workflow Pattern
+
+Guide Claude through decision points with branching logic.
 
 ---
 

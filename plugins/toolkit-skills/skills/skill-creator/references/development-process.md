@@ -2,7 +2,19 @@
 
 Step-by-step workflow for creating effective Claude Skills.
 
-## The Seven Steps
+## The Eight Steps
+
+### 0. Evaluate First
+
+> "Create evaluations BEFORE writing extensive documentation."
+
+Define 2-3 concrete use cases and success criteria before writing anything:
+
+- What specific tasks should the skill enable?
+- What does success look like? (triggers correctly, completes workflow, 0 errors)
+- What does failure look like? (doesn't trigger, wrong output, user corrections needed)
+
+This ensures the skill solves real problems rather than documenting imagined ones.
 
 ### 1. Recognize
 
@@ -83,7 +95,9 @@ Examples:
 - "A skill for databases" (too vague)
 - "This skill helps you work with PostgreSQL databases" (second person)
 
-Target: <200 chars for optimal Level 1 efficiency
+Target: 100-300 chars, max 1024 chars.
+
+**Naming**: Use gerund form (`processing-pdfs`, `managing-databases`). Kebab-case only. Cannot contain "anthropic" or "claude".
 
 #### Write SKILL.md Body
 
@@ -97,9 +111,10 @@ Structure:
 Guidelines:
 
 - Use imperative voice ("Use X for Y", not "You should use X")
+- Write descriptions in third person
 - Provide concrete examples, not abstract concepts
 - Keep it scannable with clear headings
-- Target ~50 lines, max ~150 lines
+- Target <50 lines (strict) or <500 lines (Anthropic max)
 - Link liberally to references/
 
 #### Write References
@@ -111,6 +126,9 @@ No size limits - be as detailed as needed:
 - Include code examples
 - Cover edge cases
 - Provide context and rationale
+- For files over 100 lines, include a table of contents at top
+- Keep references one level deep from SKILL.md (avoid nesting)
+- Do NOT include README.md in the skill folder
 
 ### 6. Enhance
 
@@ -213,10 +231,13 @@ Before considering a skill complete, run through these checks:
 
 ### Content Quality
 
-- [ ] Description has keywords and "Use when..." trigger
+- [ ] Description in third person with keywords and "Use when..." trigger
+- [ ] Name is kebab-case, no reserved words, no XML tags
 - [ ] Imperative voice throughout
 - [ ] Real examples, not generic placeholders
-- [ ] SKILL.md body under 150 lines / 5k words
+- [ ] SKILL.md body under 50 lines (strict) or 500 lines (loose)
+- [ ] No README.md in skill folder
+- [ ] References one level deep, long refs have TOC
 
 For a more detailed testing methodology, see [testing-guide.md](testing-guide.md).
 For common issues during development, see [troubleshooting.md](troubleshooting.md).
