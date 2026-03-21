@@ -28,7 +28,7 @@ Setup guide for recommended MCP servers:
 | ----------------------------------------------------------------- | ------------------------------------------------- |
 | [mcp-omnisearch](https://github.com/spences10/mcp-omnisearch)     | Unified search (Tavily, Kagi, GitHub, Perplexity) |
 | [mcp-sqlite-tools](https://github.com/spences10/mcp-sqlite-tools) | Safe SQLite operations                            |
-| [mcpick](https://github.com/spences10/mcpick)                     | Toggle MCP servers dynamically                    |
+| [mcpick](https://github.com/spences10/mcpick)                     | Manage MCP servers, plugins, cache, and profiles  |
 
 Skills: **mcp-setup** — setup guide for configuring MCP servers
 
@@ -83,6 +83,7 @@ DevOps patterns.
 | **ci-debug-workflow** | Debug failing CI pipelines and reproduce bugs locally                      |
 | **techdebt-finder**   | Find duplicated code, inconsistent patterns, and refactoring opportunities |
 | **deslop**            | Identify and remove AI-generated code patterns (slop)                      |
+| **improve-codebase-architecture** | Find architectural improvement opportunities and deepen shallow modules |
 
 ### dev-practices
 
