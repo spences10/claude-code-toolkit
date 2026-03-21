@@ -39,16 +39,20 @@ Ensure the zip root contains SKILL.md directly (not nested in a subdirectory).
 Skills live as directories. Share via:
 
 **Git repository** (recommended):
+
 - Commit skills to `.claude/skills/` in the project repo
 - Team members get skills automatically on clone/pull
 - Version controlled with the rest of the project
 
 **Plugin distribution**:
+
 - Package skills as part of a Claude Code plugin
-- Install via the plugin system
+- Install via the plugin system or `npx mcpick plugins install <plugin>`
+- Manage with `npx mcpick plugins list|enable|disable|update`
 - Skills go in `plugins/<plugin>/skills/<skill-name>/`
 
 **Manual copy**:
+
 - Copy the skill directory to `~/.claude/skills/` (user-level) or `.claude/skills/` (project-level)
 
 ### Claude.ai (Web)
@@ -128,6 +132,26 @@ When updating a shared skill:
 - Add new patterns alongside existing ones
 - Use reference files for new content to minimize SKILL.md changes
 - Test after updates to verify trigger behavior is preserved
+
+## Plugin Management with mcpick
+
+[mcpick](https://github.com/spences10/mcpick) provides CLI management for MCP servers and plugins:
+
+```bash
+# Install and manage plugins
+npx mcpick plugins install <plugin>
+npx mcpick plugins update <plugin>
+npx mcpick plugins list
+
+# Cache management (fix stale plugins after version bumps)
+npx mcpick cache status
+npx mcpick cache clear
+npx mcpick cache clean-orphaned
+
+# Save/load MCP server + plugin profiles
+npx mcpick profile save my-setup
+npx mcpick profile load my-setup
+```
 
 ## Pre-Distribution Checklist
 
