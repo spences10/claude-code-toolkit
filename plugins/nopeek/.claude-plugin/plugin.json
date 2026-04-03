@@ -1,0 +1,4 @@
+{
+  "name": "nopeek",
+  "description": "Secret safety hooks: auto-load credentials via CLAUDE_ENV_FILE, redact secrets from CLI output. Powered by the nopeek CLI."
+}

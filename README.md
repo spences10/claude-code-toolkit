@@ -16,6 +16,7 @@ Productivity and ecosystem tools for Claude Code.
 /plugin install dev-environment
 /plugin install devops-skills
 /plugin install dev-practices
+/plugin install nopeek
 ```
 
 ## Plugins
@@ -93,12 +94,26 @@ Development practice skills.
 | ------- | -------------------------------------------------------------- |
 | **tdd** | Test-Driven Development workflow with red-green-refactor cycle |
 
+### nopeek
+
+Secret safety for Claude Code sessions. Powered by the [nopeek](https://github.com/spences10/nopeek) CLI.
+
+| Hook | Event | What it does |
+| --- | --- | --- |
+| **session-load** | SessionStart | Auto-loads stored credentials and CLI profiles via `CLAUDE_ENV_FILE` |
+| **redact-output** | PreToolUse(Bash) | Wraps cloud CLI output through secret pattern redaction |
+
+**Prerequisite:** `npx nopeek init`
+
+Skills: **nopeek** — secret-safe Claude Code sessions setup and troubleshooting
+
 ## Ecosystem
 
 Related projects for Claude Code power users.
 
 | Project                                                             | What it does                                                                  |
 | ------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| [nopeek](https://github.com/spences10/nopeek)                       | Secure proxy between Claude Code and your secrets                             |
 | [svelte-skills-kit](https://github.com/spences10/svelte-skills-kit) | Production-ready Svelte 5 & SvelteKit skills (90%+ verified accuracy)         |
 | [claude-skills-cli](https://github.com/spences10/claude-skills-cli) | Create skills with progressive disclosure validation and 84% activation hooks |
 | [mcpick](https://github.com/spences10/mcpick)                       | Manage MCP servers, plugins, cache, and profiles from the CLI                 |
