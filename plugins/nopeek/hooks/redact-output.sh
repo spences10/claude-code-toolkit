@@ -18,8 +18,8 @@ fi
 COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty' 2>/dev/null)
 [[ -z "$COMMAND" ]] && exit 0
 
-# Only intercept cloud CLI commands
-CLOUD_CLI_PATTERN='^\s*(aws|hcloud|kubectl|doctl|gcloud|az|terraform)\s'
+# Only intercept CLI commands that might output secrets
+CLOUD_CLI_PATTERN='^\s*(aws|hcloud|kubectl|doctl|gcloud|az|terraform|gh|ssh|scp|ssh-keygen|docker|docker-compose|pulumi|flyctl|railway|vercel)\s'
 if ! echo "$COMMAND" | grep -qE "$CLOUD_CLI_PATTERN"; then
   exit 0
 fi
