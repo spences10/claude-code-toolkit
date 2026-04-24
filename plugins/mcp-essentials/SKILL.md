@@ -5,7 +5,7 @@ description: "Setup guide for essential MCP servers. Use when configuring MCP se
 
 # MCP Essentials Setup
 
-Three MCP servers that enhance Claude Code workflows.
+Three MCP servers that enhance agent workflows.
 
 ## Quick Install
 
