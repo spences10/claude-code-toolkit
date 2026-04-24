@@ -1,7 +1,7 @@
 ---
 name: tdd
 # prettier-ignore
-description: Test-Driven Development workflow with red-green-refactor cycle. Use only when explicitly asked for TDD, not for general test writing.
+description: "Test-Driven Development workflow with red-green-refactor cycle. Use only when explicitly asked for TDD, not for general test writing."
 ---
 
 # Test-Driven Development

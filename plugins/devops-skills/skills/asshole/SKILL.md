@@ -1,7 +1,7 @@
 ---
 name: asshole
 # prettier-ignore
-description: Stop dismissing pre-existing test/build failures. Use when reporting test results, build output, or any command output containing errors or failures.
+description: "Stop dismissing pre-existing test/build failures. Use when reporting test results, build output, or any command output containing errors or failures."
 ---
 
 <!-- Credit: @fubits1 (Ilja) — https://gist.github.com/fubits1/3d6b8c2079af85a3693260fe848a5335 -->

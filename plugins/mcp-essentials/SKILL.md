@@ -1,6 +1,6 @@
 ---
 name: mcp-setup
-description: Setup guide for essential MCP servers. Use when configuring MCP servers or when user asks about search, SQLite, or MCP management.
+description: "Setup guide for essential MCP servers. Use when configuring MCP servers or when user asks about search, SQLite, or MCP management."
 ---
 
 # MCP Essentials Setup

@@ -1,7 +1,7 @@
 ---
 name: improve-codebase-architecture
 # prettier-ignore
-description: Explore a codebase to find opportunities for architectural improvement, focusing on making the codebase more testable by deepening shallow modules. Use when user wants to improve architecture, find refactoring opportunities, consolidate tightly-coupled modules, or make a codebase more AI-navigable.
+description: "Explore a codebase to find opportunities for architectural improvement, focusing on making the codebase more testable by deepening shallow modules. Use when user wants to improve architecture, find refactoring opportunities, consolidate tightly-coupled modules, or make a codebase more AI-navigable."
 ---
 
 <!-- source https://www.youtube.com/watch?v=EJyuu6zlQCg -->

@@ -1,7 +1,7 @@
 ---
 name: ci-debug-workflow
 # prettier-ignore
-description: Debug failing CI pipelines, containers, and reproduce bugs locally. Use when CI is red, containers won't start, or need to reproduce bugs.
+description: "Debug failing CI pipelines, containers, and reproduce bugs locally. Use when CI is red, containers won't start, or need to reproduce bugs."
 ---
 
 # CI Debug Workflow

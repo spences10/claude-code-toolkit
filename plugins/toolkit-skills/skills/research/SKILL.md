@@ -1,7 +1,7 @@
 ---
 name: research
 # prettier-ignore
-description: Verify sources before presenting findings. Use when asked to research links or documentation.
+description: "Verify sources before presenting findings. Use when asked to research links or documentation."
 ---
 
 # Verified Research

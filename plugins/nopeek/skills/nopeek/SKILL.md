@@ -1,6 +1,6 @@
 ---
 name: nopeek
-description: Secret-safe Claude Code sessions via nopeek CLI. Use when user asks about secrets, .env loading, credential safety, or keeping API keys out of conversation context.
+description: "Secret-safe Claude Code sessions via nopeek CLI. Use when user asks about secrets, .env loading, credential safety, or keeping API keys out of conversation context."
 ---
 
 # nopeek — Secret Safety for Claude Code

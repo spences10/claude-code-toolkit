@@ -1,7 +1,7 @@
 ---
 name: worktree-mastery
 # prettier-ignore
-description: Git worktree patterns for parallel Claude sessions. Run multiple Claude instances on same repo without conflicts.
+description: "Git worktree patterns for parallel Claude sessions. Run multiple Claude instances on same repo without conflicts."
 ---
 
 # Worktree Mastery

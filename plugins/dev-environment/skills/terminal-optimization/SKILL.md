@@ -1,7 +1,7 @@
 ---
 name: terminal-optimization
 # prettier-ignore
-description: Terminal setup for Claude Code. Use for Ghostty config, statusline customization, voice dictation, tmux worktrees.
+description: "Terminal setup for Claude Code. Use for Ghostty config, statusline customization, voice dictation, tmux worktrees."
 ---
 
 # Terminal Optimization

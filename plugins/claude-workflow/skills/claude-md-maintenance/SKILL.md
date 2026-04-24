@@ -1,7 +1,7 @@
 ---
 name: claude-md-maintenance
 # prettier-ignore
-description: Maintain CLAUDE.md files effectively. Use when adding lessons learned, updating conventions, or restructuring project instructions.
+description: "Maintain CLAUDE.md files effectively. Use when adding lessons learned, updating conventions, or restructuring project instructions."
 ---
 
 # CLAUDE.md Maintenance

@@ -1,7 +1,7 @@
 ---
 name: reflect
 # prettier-ignore
-description: Analyze session history for learnings and persist to skills. Solves "memory zero" - correct once, never again.
+description: "Analyze session history for learnings and persist to skills. Solves \"memory zero\" - correct once, never again."
 ---
 
 # Reflect

@@ -1,6 +1,6 @@
 ---
 name: ecosystem-guide
-description: Guide to spences10's Claude Code ecosystem tools. Use when user asks which tool to use, how tools relate, or needs help choosing between MCP servers, skills, or CLIs.
+description: "Guide to spences10's Claude Code ecosystem tools. Use when user asks which tool to use, how tools relate, or needs help choosing between MCP servers, skills, or CLIs."
 ---
 
 # Claude Code Ecosystem Guide
