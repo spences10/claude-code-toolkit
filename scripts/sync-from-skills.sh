@@ -4,10 +4,10 @@
 set -euo pipefail
 
 SKILLS_REPO=${SKILLS_REPO:-../skills}
-SOURCE_DIR="$SKILLS_REPO/skills"
+SOURCE_DIR="$SKILLS_REPO"
 
 if [ ! -d "$SOURCE_DIR" ]; then
-  echo "Error: canonical skills directory not found: $SOURCE_DIR" >&2
+  echo "Error: canonical skills repo not found: $SOURCE_DIR" >&2
   echo "Set SKILLS_REPO=/path/to/skills if needed." >&2
   exit 1
 fi
