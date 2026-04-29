@@ -2,6 +2,8 @@
 
 Productivity and ecosystem tools for Claude Code.
 
+For vendor-agnostic skills usable outside Claude Code's plugin marketplace, use [spences10/skills](https://github.com/spences10/skills).
+
 ## Quick Start
 
 ```bash
@@ -109,7 +111,7 @@ Skills: **nopeek** — secret-safe Claude Code sessions setup and troubleshootin
 
 ## Ecosystem
 
-Related projects for Claude Code power users.
+Related projects for Claude Code power users. For portable skills across compatible agents, use [spences10/skills](https://github.com/spences10/skills).
 
 | Project                                                             | What it does                                                                  |
 | ------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
