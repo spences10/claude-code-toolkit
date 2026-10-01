@@ -1,23 +1,13 @@
 {
-  "description": "Secret safety hooks powered by nopeek CLI. SessionStart loads credentials, PreToolUse redacts cloud CLI output.",
+  "description": "Best-effort cloud CLI stdout redaction. Credentials are never automatically loaded into sessions.",
   "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/session-load.sh"
-          }
-        ]
-      }
-    ],
     "PreToolUse": [
       {
         "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/redact-output.sh"
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/redact-output.sh\""
           }
         ]
       }

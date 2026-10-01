@@ -1,0 +1,32 @@
+name: nopeek security regressions
+
+on:
+  pull_request:
+    paths:
+      - 'plugins/nopeek/**'
+      - '.claude-plugin/marketplace.json'
+      - '.github/workflows/nopeek-security.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'plugins/nopeek/**'
+      - '.claude-plugin/marketplace.json'
+      - '.github/workflows/nopeek-security.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  session-isolation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check shell syntax
+        run: |
+          for hook in plugins/nopeek/hooks/*.sh; do
+            bash -n "$hook"
+          done
+      - name: Test retired session loading with synthetic credentials
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python3 -m unittest discover -s plugins/nopeek/tests -v

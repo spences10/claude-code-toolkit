@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Productivity and ecosystem tools for Claude Code",
-    "version": "0.0.23"
+    "version": "0.0.24"
   },
   "plugins": [
     {
@@ -104,8 +104,8 @@
     {
       "name": "nopeek",
       "source": "./plugins/nopeek",
-      "description": "Secret safety: auto-load credentials via CLAUDE_ENV_FILE, redact cloud CLI output. Powered by the nopeek CLI.",
-      "version": "0.0.23",
+      "description": "Per-command credential guidance and best-effort cloud CLI stdout redaction. No session-wide credential loading. Powered by the nopeek CLI.",
+      "version": "0.0.24",
       "author": { "name": "Scott Spence" },
       "category": "hooks",
       "keywords": ["secrets", "redaction", "env", "credentials", "nopeek", "safety"],

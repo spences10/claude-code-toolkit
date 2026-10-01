@@ -1,85 +1,50 @@
 ---
 name: nopeek
-description: "Secret-safe Claude Code sessions via nopeek CLI. Use when user asks about secrets, .env loading, credential safety, or keeping API keys out of conversation context."
+description: "Reduce accidental secret disclosure with nopeek. Use for credential-dependent commands, .env loading, and secret-safety troubleshooting."
 ---
 
-# nopeek — Secret Safety for Claude Code
+# nopeek — Per-command credentials
 
-Secure proxy between Claude Code and your secrets. Claude knows key names, never key values.
-
-## Why
-
-Every Bash tool output is sent to Anthropic's API and retained 30+ days. If a CLI prints a token, that token is stored on Anthropic's servers. nopeek prevents this.
-
-## Quick Start
-
-All nopeek commands are safe inside Claude Code — they never output secret values, only key names.
-
-### 1. Scan and migrate CLIs
+When the user says "use nopeek if you need keys", handle the CLI syntax
+and key selection yourself. Use `npx`, `pnpx`, or `bunx` as appropriate;
+prefer a reviewed, pinned local version for production credentials.
+Do not read secret files into tool output or put literal credentials in commands.
 
 ```bash
-npx nopeek init
+nopeek run .env --only API_KEY -- node ./script-that-reads-env.js
+nopeek list
+nopeek status
+nopeek audit
 ```
 
-Detects installed cloud CLIs (aws, hcloud, kubectl, etc.), checks their auth config, and migrates to profile-based auth where needed.
+## Delivery rules
 
-### 2. Load .env secrets
+- Prefer `run` in every harness, including Claude Code, Codex, Gemini CLI,
+  OpenCode, Cursor, and Pi. Select only the keys the command needs.
+- `run` passes values in the child's environment, not shell assignments.
+  It does not redact child stdout/stderr or prevent the child exposing values.
+- `--only` filters the input file, not inherited environment variables.
+  Start with a clean parent session; avoid `env`, `printenv`, tracing,
+  verbose auth output, and expanding credentials into command arguments.
+- `load` never writes `CLAUDE_ENV_FILE`. In detected agent sessions it
+  creates a private, self-removing source file. Source its path only in
+  the shell running the command; never inline its contents or put it into
+  a session env file. Prefer `run` over this fallback.
+- `set` and `load --persist --only KEY` explicitly store global plaintext
+  keys. They are not project-scoped and are not automatically loaded.
+  Avoid persistence unless specifically requested; `run` reads a file,
+  not this global store. `init` audits cloud auth; it does not migrate it.
 
-```bash
-npx nopeek load .env
-npx nopeek load .env --only DATABASE_URL,API_KEY
-```
+## Migration and limitations
 
-Injects values into the session via `CLAUDE_ENV_FILE` (when available) or outputs a source command. Only key names appear in output — never values.
+Update both the CLI and plugin. Older versions injected stored keys and
+CLI profiles into every session. Disable legacy SessionStart hooks,
+restart affected sessions, and rotate exposed credentials. Updating does
+not clear existing shell environments, hook files, histories, or transcripts.
+Use `nopeek remove KEY` only when removal is requested.
 
-### 3. Store arbitrary keys
-
-```bash
-npx nopeek set MY_API_KEY --from-env
-npx nopeek set STRIPE_KEY --value "sk_live_..."
-```
-
-Stored keys auto-load on every Claude Code session via the SessionStart hook.
-
-### 4. Verify
-
-```bash
-npx nopeek status
-npx nopeek list
-```
-
-## What the hooks do
-
-| Hook | Event | Purpose |
-|------|-------|---------|
-| session-load.sh | SessionStart | Loads stored keys + CLI profiles into `CLAUDE_ENV_FILE` |
-| redact-output.sh | PreToolUse(Bash) | Wraps cloud CLI output through secret pattern redaction |
-
-## Limitations
-
-- **Redaction is best-effort.** Regex patterns catch known formats (AWS keys, bearer tokens, Stripe keys, private key headers, connection strings) but cannot catch every possible secret.
-- **This is a safety net, not a guarantee.** The primary defense is loading secrets via `CLAUDE_ENV_FILE` so they never appear in output at all.
-- **No PostToolUse output redaction.** Claude Code doesn't support modifying Bash output after execution. The PreToolUse hook rewrites commands to filter output before Claude sees it.
-- **Commands with pipes or redirections are not wrapped.** The redaction hook skips commands containing `|`, `>`, or `<` to avoid breaking complex command semantics.
-- **Requires jq.** The redact hook will not fire without jq installed.
-- **Waiting on anthropics/claude-code#39882** — PreApiCall/PostApiCall hooks would enable full payload redaction before data leaves your machine.
-
-## Audit .env files
-
-```bash
-npx nopeek audit
-```
-
-Scans current directory for .env files containing secrets and checks .gitignore coverage.
-
-## Troubleshooting
-
-**Keys not loading on session start:**
-- Check `npx nopeek status` — are keys stored?
-- Verify the plugin is installed: `/plugin list`
-- Try `/reload-plugins`
-
-**Cloud CLI still showing secrets:**
-- The redaction hook only fires for commands starting with known CLI names (aws, hcloud, kubectl, doctl, gcloud, az, terraform)
-- Commands with pipes or redirections are skipped to avoid breaking semantics
-- Run `npx nopeek load .env` to make secrets available as env vars, then use `$VAR_NAME` in commands
+The remaining PreToolUse hook applies best-effort regex redaction to
+stdout of selected cloud CLI commands. It does not cover stderr,
+`ps`/`pgrep`, or commands containing pipes/redirections, and requires jq.
+It is not a security boundary. File permissions, sandboxes, and redaction
+reduce risk but cannot guarantee secrecy from an arbitrary child command.
